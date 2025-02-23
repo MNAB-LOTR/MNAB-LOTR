@@ -84,6 +84,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.account-status {
+  color: black;
+  text-align: right;
+}
+
 .login-container {
   background: rgba(30, 30, 30, 0.9);
   padding: 40px;
