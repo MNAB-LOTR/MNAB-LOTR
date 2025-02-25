@@ -6,10 +6,32 @@
     <title>Landing Pagina</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/stijl.css" />
+    <script src="../MNAB-LOTR/js/ingelogd.js"></script>
   </head>
   <body>
-    <header>
-      <div class="account-status">👤</div>
+    <header class="ingelogd">
+      <aside class="account-overview">
+        <div class="account-status" onclick="toggleMenu(event)">🗝</div>
+        <ul class="account-menu">
+          <li><a href="#">Home</a></li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+            <ul class="sub-menu quiz-options">
+              <li><a href="#">Ten rounds</a></li>
+              <li><a href="#">Sudden death</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+            <ul class="sub-menu quotes-options">
+              <li><a href="#">Favorites</a></li>
+              <li><a href="#">Blacklist</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Instellingen</a></li>
+          <li><a href="#">Uitloggen</a></li>
+        </ul>
+      </aside>
     </header>
 
     <main>
@@ -42,7 +64,7 @@
     </main>
 
     <footer>
-      <p>© 2025 MNAB .</p>
+      <p>© 2025 MNAB</p>
     </footer>
   </body>
 </html>
