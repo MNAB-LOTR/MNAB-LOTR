@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOTR Login</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/stijl.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="login-title">Login</h1>
+    </header>
+    <main>
+      <form class="login-form">
+        <label for="naam">Gebruikersnaam<span class="required">*</span></label>
+        <input type="text" id="naam" required />
+
+        <label for="password">Wachtwoord<span class="required">*</span></label>
+        <input type="password" id="password" required />
+
+        <div class="remember-me">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Ik wil aangemeld blijven</label>
+        </div>
+
+        <button type="submit">LOGIN</button>
+      </form>
+
+      <div class="extra-options">
+        <a href="#"><strong>Wachtwoord vergeten?</strong></a>
+        <p>
+          Nog geen account?<a href="registratie-pagina.html">
+            <strong>Account aanmaken</strong></a
+          >
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 MNAB</p>
+    </footer>
+  </body>
+</html>
