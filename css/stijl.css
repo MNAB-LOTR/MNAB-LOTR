@@ -320,3 +320,23 @@ button:hover {
   font-size: 1em;
   margin-top: 10px;
 }
+
+/* favorieten en blacklist */
+
+.icons {
+  display: flex;
+  gap: 15px; 
+  justify-content: flex-end; 
+  margin-top: 10px; /
+}
+
+.icons img{
+  width: 30px; 
+    height: auto;
+    cursor: pointer; 
+    transition: transform 0.2s ease-in-out;
+}
+
+.icons img :hover{
+  transform: scale(1.8);
+}
