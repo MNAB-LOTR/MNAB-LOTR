@@ -1,3 +1,4 @@
+/* algemene styling */
 @font-face {
   font-family: "Aniron";
   src: url("../assets/fonts/Aniron-7BaP.ttf") format("truetype");
@@ -161,6 +162,7 @@ a:hover {
   color: white;
 }
 
+/* login pagina */
 .login-container {
   background: rgba(30, 30, 30, 0.9);
   padding: 40px;
@@ -195,6 +197,7 @@ a:hover {
 
 button {
   margin-top: 20px;
+  margin-bottom: 15px;
   padding: 10px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
   color: #000;
@@ -223,6 +226,7 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/* registratie pagina */
 .registratie-title {
   color: black;
 }
@@ -322,7 +326,6 @@ button:hover {
 }
 
 /* favorieten en blacklist */
-
 .icons {
   display: flex;
   gap: 15px; 
@@ -340,7 +343,8 @@ button:hover {
 .icons img :hover{
   transform: scale(1.8);
 }
-/* Landing-project*/
+
+/* landing pagina project*/
 .titel{
   color: black;
 }
