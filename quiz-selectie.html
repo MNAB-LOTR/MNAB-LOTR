@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="nl-BE">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Pagina</title>
+    <title>Game Mode Map</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/stijl.css" />
-    <script src="../MNAB-LOTR/js/ingelogd.js"></script>
+    <script src="js/ingelogd.js"></script>
   </head>
   <body>
     <header class="ingelogd">
+      <h1>Game Mode Selectie</h1>
       <aside class="account-overview">
-        <section class="account-status" onclick="toggleMenu(event)">🗝</section>
+        <div class="account-status" onclick="toggleMenu(event)">🗝</div>
         <ul class="account-menu">
           <li><a href="landing-pagina.html">Home</a></li>
           <li>
@@ -34,34 +35,17 @@
       </aside>
     </header>
 
-    <main>
-      <h1>Welkom bij The One!</h1>
-      <p class="intro">
-        Ben jij een echte fan van The Lord of the Rings films? Test je kennis
-        met onze Quotes Quiz! We geven je een quote uit de films en jij moet
-        raden welk personage deze uitspraak deed en in welke film het voorkomt.
-      </p>
+    <section class="map-container">
+      <img src="assets/images/map.jpg" alt="Game Map" class="map-image" />
 
-      <section class="buttons">
-        <article class="button-box">
-          <button class="button"><a href="">Quotes quiz</a></button>
-          <p>Speel de quiz</p>
-        </article>
-        <article class="button-box">
-          <button class="button"><a href="">Favorieten</a></button>
-          <p>Bekijk en beheer je favoriete quotes</p>
-        </article>
-        <article class="button-box">
-          <button class="button"><a href="">Blacklists</a></button>
-          <p>Beheer quotes die je niet meer wilt zien in de quiz</p>
-        </article>
+      <section class="map-marker rounds">
+        <span>Ten Rounds</span>
       </section>
 
-      <p class="cta">
-        Klaar om te spelen? Klik op "Quotes quiz" en bewijs dat je de ultieme
-        LOTR kenner bent!
-      </p>
-    </main>
+      <section class="map-marker sudden-death">
+        <span>Sudden Death</span>
+      </section>
+    </section>
 
     <footer>
       <p>© 2025 MNAB</p>
