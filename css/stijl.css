@@ -8,6 +8,11 @@
   src: url("../assets/fonts/MiddleEarthPersonalUseRegular-axlP5.ttf")
     format("truetype");
 }
+@font-face {
+  font-family: "Ringbearer";
+  src: url("../assets/fonts/RingbearerMedium-51mgZ.ttf")
+    format("truetype");
+}
 
 h1 {
   font-family: "Aniron";
@@ -88,8 +93,8 @@ a:hover {
 
 .ingelogd {
   display: flex;
-  align-items: center; /* Aligns items vertically */
-  justify-content: space-between; /* Spreads items out */
+  align-items: center;
+  justify-content: space-between; 
   padding: 20px;
 }
 
@@ -98,8 +103,8 @@ a:hover {
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
   font-size: 2rem;
   text-decoration: none;
-  margin-right: auto; /* Ensures it stays on the left */
-  order: -1; /* Forces it to be the first element in flexbox */
+  margin-right: auto;
+  order: -1; 
 }
 
 .return:hover {
@@ -110,7 +115,7 @@ a:hover {
   color: black;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
   font-size: 2rem;
-  flex-grow: 1; /* Takes up available space */
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -451,4 +456,118 @@ button:hover {
   left: 70%;
 }
 
+/*Quiz game pagina*/
+.quiz-container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  background-image: url('../assets/images/pexels-orlovamaria-4913340.jpg');
+  background-size: cover; 
+  background-position: center; 
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+  font-family: "Ringbearer";
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px; 
+  color: black; 
+}
+
+.question-number,
+.score {
+  font-weight: bold;
+}
+
+.question-block {
+  background-color: rgba(204, 192, 168, 0.6);
+  padding: 20px;
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quote-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.like-btn,
+.dislike-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    color: #333;
+    cursor: pointer;
+}
+
+.like-btn:hover,
+.dislike-btn:hover {
+  text-decoration: none;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 20px;
+  color: #555;
+  margin: 20px 0;
+}
+
+p em {
+  font-family: "MiddleEarth";
+  font-size: 16px;
+  color: black;
+}
+
+.character-selection,
+.movie-selection {
+  margin: 20px 0;
+}
+
+h2 {
+  font-family: "Ringbearer";
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.character-btn,
+.movie-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.character-btn:hover,
+.movie-btn:hover {
+  background-color: darkred;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: darkred;
+}
 
