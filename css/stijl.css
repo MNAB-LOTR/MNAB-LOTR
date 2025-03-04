@@ -382,16 +382,12 @@ button:hover {
 }
 
 /*quiz pagina */
-/* General styles */
 .container {
   position: relative;
   width: 100%;
   height: 100vh; 
 }
 
-
-
-/* Map container */
 .map-container {
   position: relative;
   width: 80%;
@@ -405,7 +401,6 @@ button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Map marker styles */
 .map-marker {
   position: absolute;
   background-color: rgba(255, 204, 0, 0.8);
@@ -423,7 +418,6 @@ button:hover {
   background-color: rgba(255, 170, 0, 0.9);
 }
 
-/* Specific positions */
 .rounds {
   top: 40%;
   left: 30%;
