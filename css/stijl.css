@@ -129,7 +129,8 @@ a:hover {
 }
 
 .account-overview {
-  position: absolute;
+  position: relative;
+  z-index: 1100;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
@@ -156,6 +157,7 @@ a:hover {
 
 .account-menu {
   display: none;
+  z-index: 1000;
   position: absolute;
   top: 100%;
   right: 0;
@@ -167,7 +169,9 @@ a:hover {
   text-align: center;
   backdrop-filter: blur(10px);
 }
-
+.account-menu.show {
+  display: block;
+}
 .account-menu li {
   padding: 10px;
 }
@@ -383,39 +387,80 @@ button:hover {
 }
 
 /* landing pagina project*/
-.titel{
+titel{
   color: black;
 }
-.grid{
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.container {
+  flex: 1;
+  padding: 20px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  gap: 20px;
+  justify-items: center;
 }
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+
+.kaart {
+  background: linear-gradient(to bottom, #d4af37, #a87c4f);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%; 
+  max-width: 350px;
 }
+
+.kaart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.media {
+  overflow: hidden;
+}
+
 .afbeelding {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 2px solid #2c3e50;
-}
-.kaart {
-
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  flex-direction: row;
-
-}
-.kaart:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
 }
 
+.info {
+  padding: 15px;
+}
+
+.naam {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tekst {
+ 
+  color: black;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
 /*Quiz selectie pagina*/
 .container {
   position: relative;
