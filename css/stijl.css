@@ -408,7 +408,7 @@ button:hover {
   transition: 0.3s;
 }
 
-/*quiz pagina */
+/*Quiz selectie pagina*/
 .container {
   position: relative;
   width: 100%;
@@ -453,6 +453,14 @@ button:hover {
 .sudden-death {
   top: 60%;
   left: 70%;
+}
+
+.game-selection {
+  color: black;
+}
+
+.game-selection:hover {
+  text-decoration: none;
 }
 
 /*Quiz game pagina*/
