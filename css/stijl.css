@@ -55,6 +55,7 @@ header {
 }
 
 main {
+  width: 80%;
   grid-area: main;
   display: flex;
   flex-direction: column;
@@ -386,8 +387,6 @@ button:hover {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-
- 
 }
 .afbeelding {
   width: 100%;
