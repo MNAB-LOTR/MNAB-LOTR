@@ -55,6 +55,7 @@ header {
 }
 
 main {
+  width: 80%;
   grid-area: main;
   display: flex;
   flex-direction: column;
@@ -108,6 +109,14 @@ a:hover {
 }
 
 .return:hover {
+  text-decoration: none;
+}
+
+.return-home {
+  color: black;
+}
+
+.return-home:hover {
   text-decoration: none;
 }
 
@@ -386,8 +395,6 @@ button:hover {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-
- 
 }
 .afbeelding {
   width: 100%;
@@ -409,7 +416,7 @@ button:hover {
   transition: 0.3s;
 }
 
-/*quiz pagina */
+/*Quiz selectie pagina*/
 .container {
   position: relative;
   width: 100%;
@@ -454,6 +461,14 @@ button:hover {
 .sudden-death {
   top: 60%;
   left: 70%;
+}
+
+.game-selection {
+  color: black;
+}
+
+.game-selection:hover {
+  text-decoration: none;
 }
 
 /*Quiz game pagina*/
