@@ -112,6 +112,14 @@ a:hover {
   text-decoration: none;
 }
 
+.return-home {
+  color: black;
+}
+
+.return-home:hover {
+  text-decoration: none;
+}
+
 .game-name {
   color: black;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
