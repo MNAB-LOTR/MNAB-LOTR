@@ -368,27 +368,78 @@ button:hover {
 }
 
 /* favorieten en blacklist */
+
+.title-container h2{
+ color: #7a5a35;
+ font-size: 3rem;
+}
+.dislike-btn{
+  background-color: #7a5a35;
+}
+
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.quote {
+  flex-grow: 1; 
+}
+
+.icons a{
+  text-decoration: none;
+  font-size: 20px; 
+}
+
 .icons {
   display: flex;
+  font-size: 2rem;
   gap: 15px; 
   justify-content: flex-end; 
-  margin-top: 10px; /
+  margin-top: 10px; 
 }
 
-.icons img{
-  width: 30px; 
-    height: auto;
-    cursor: pointer; 
-    transition: transform 0.2s ease-in-out;
-}
-
-.icons img :hover{
+.icons a:hover{
   transform: scale(1.8);
 }
+
+.title-container {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 20px;
+}
+
+.title-container .download-btn {
+  font-size: 24px; 
+  text-decoration: none;
+  margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.title-container .download-btn:hover {
+  transform: scale(1.5); 
+}
+
 
 /* landing pagina project*/
 titel{
   color: black;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-between;
+}
+
+.info button{
+   margin: 0%;
 }
 
 * {
@@ -455,10 +506,15 @@ main.container {
   color: black;
   line-height: 1.5;
 }
+@media (min-width: 600px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr)
   }
 }
 /*Quiz selectie pagina*/
