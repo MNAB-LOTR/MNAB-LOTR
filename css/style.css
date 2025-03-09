@@ -649,6 +649,8 @@ main.container {
 .quote-section {
   text-align: center;
   margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .like-btn,
@@ -670,8 +672,6 @@ main.container {
   font-size: 20px;
   color: black;
   margin: 20px 0;
-  border: 1px solid black;
-  border-radius: 8px;
 }
 
 p em {

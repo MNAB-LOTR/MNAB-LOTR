@@ -37,6 +37,11 @@
         </aside>
       </header>
 
+      <div class="game-result">
+        <p class="final-score"></p>
+        <button class="restart-btn">Opnieuw starten</button>
+      </div>
+
     <main class="quiz-container ten-rounds-container">
       <section class="game-info ten-rounds-info">
         <span class="question-number" id="question-number-count">?</span
@@ -47,15 +52,10 @@
       </section>
 
       <section class="question-block ten-rounds-question-block">
+        <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
         <article class="quote-section">
           <a href="#" class="like-btn" id="like-btn">♡</a>
           <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-          <p>
-            <em
-              >Een stem uit het verleden… Kun jij de spreker en de film
-              noemen?</em
-            >
-          </p>
           <blockquote class="quote" id="quote">...</blockquote>
         </article>
 
@@ -78,14 +78,6 @@
         </section>
 
         <button class="submit-btn" id="submit">Ontdek de waarheid!</button>
-      </section>
-
-      <section id="reason-section" style="display: none">
-        <textarea
-          id="reason-input"
-          placeholder="Geef een reden voor de blacklist..."
-        ></textarea>
-        <button id="submit-reason-btn">Verstuur reden</button>
       </section>
     </main>
 
