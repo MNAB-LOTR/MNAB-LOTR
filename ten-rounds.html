@@ -1,75 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10 rounds</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/stijl.css" />
     <script src="js/ingelogd.js"></script>
-</head>
-<body>
+    <script src="js/ten-rounds-game.js"></script>
+  </head>
+  <body>
     <header class="ingelogd">
-      <h1 class="game-name"><a href="landing-pagina.html" class="return-home">The one</a></h1>
-        <a href="quiz-selectie.html" class="return">↩<a>
-        <aside class="account-overview">
-          <a class="account-status" onclick="toggleMenu(event)">🗝</a>
-          <ul class="account-menu">
-            <li><a href="landing-pagina.html">Home</a></li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
-              <ul class="sub-menu quiz-options">
-                <li><a href="quiz-selectie.html">Ten rounds</a></li>
-                <li><a href="quiz-selectie.html">Sudden death</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
-              <ul class="sub-menu quotes-options">
-                <li><a href="favorieten-pagina.html">Favorites</a></li>
-                <li><a href="blacklist-pagina.html">Blacklist</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Instellingen</a></li>
-            <li><a href="#">Uitloggen</a></li>
-          </ul>
-        </aside>
-      </header>
+      <h1 class="game-name">
+        <a href="landing-pagina.html" class="return-home">The one</a>
+      </h1>
+      <a href="quiz-selectie.html" class="return">↩</a>
+      <aside class="account-overview">
+        <a class="account-status" onclick="toggleMenu(event)">🗝</a>
+        <ul class="account-menu">
+          <li><a href="landing-pagina.html">Home</a></li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+            <ul class="sub-menu quiz-options">
+              <li><a href="quiz-selectie.html">Ten rounds</a></li>
+              <li><a href="quiz-selectie.html">Sudden death</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+            <ul class="sub-menu quotes-options">
+              <li><a href="favorieten-pagina.html">Favorites</a></li>
+              <li><a href="blacklist-pagina.html">Blacklist</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Instellingen</a></li>
+          <li><a href="#">Uitloggen</a></li>
+        </ul>
+      </aside>
+    </header>
 
-      <main class="quiz-container ten-rounds-container">
-        <section class="game-info ten-rounds-info">
-            <span class="question-number" id="question-number">1</span>/10
-            <span class="score" id="score">0</span>/20
+    <div class="game-result">
+      <p class="final-score"></p>
+      <button class="restart-btn">Opnieuw starten</button>
+    </div>
+
+    <main class="quiz-container ten-rounds-container">
+      <section class="game-info ten-rounds-info">
+        <span class="question-number" id="question-number-count">?</span
+        ><span id="question-number">1</span> /
+        <span class="total-questions">10</span>
+        <span class="score" id="score-count">☆</span><span id="score">0</span> /
+        <span class="total-score">20</span>
+      </section>
+
+      <section class="question-block ten-rounds-question-block">
+        <article class="quote-section">
+          <a href="#" class="like-btn" id="like-btn">♡</a>
+          <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
+          <p>
+            <em
+              >Een stem uit het verleden… Kun jij de spreker en de film
+              noemen?</em
+            >
+          </p>
+          <blockquote class="quote" id="quote">...</blockquote>
+        </article>
+
+        <section class="character-selection">
+          <h2>Kies een personage:</h2>
+          <ul>
+            <li><button class="character-btn"></button></li>
+            <li><button class="character-btn"></button></li>
+            <li><button class="character-btn"></button></li>
+          </ul>
         </section>
-    
-        <section class="question-block ten-rounds-question-block">
-            <article class="quote-section">
-                <a href="#" class="like-btn" id="like-btn">♡</a>
-                <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-                <blockquote class="quote" id="quote">...</blockquote>
-                <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
-            </article>
-    
-            <section class="character-selection">
-                <h2>Kies een personage:</h2>
-                <button class="character-btn"></button>
-                <button class="character-btn"></button>
-                <button class="character-btn"></button>
-            </section>
-    
-            <section class="movie-selection">
-                <h2>Kies een film:</h2>
-                <button class="movie-btn"></button>
-                <button class="movie-btn"></button>
-                <button class="movie-btn" ></button>
-            </section>
-    
-            <button class="submit-btn" id="submit">Ontdek de waarheid!</button>
+
+        <section class="movie-selection">
+          <h2>Kies een film:</h2>
+          <ul>
+            <li><button class="movie-btn"></button></li>
+            <li><button class="movie-btn"></button></li>
+            <li><button class="movie-btn"></button></li>
+          </ul>
         </section>
+
+        <button class="submit-btn" id="submit">Ontdek de waarheid!</button>
+      </section>
+
+      <section id="reason-section" style="display: none">
+        <textarea
+          id="reason-input"
+          placeholder="Geef een reden voor de blacklist..."
+        ></textarea>
+        <button id="submit-reason-btn">Verstuur reden</button>
+      </section>
     </main>
-    
+
     <footer>
-        <p>© 2025 MNAB</p>
+      <p>© 2025 MNAB</p>
     </footer>
-</body>
+  </body>
 </html>

@@ -498,8 +498,12 @@ button:hover {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 20px; 
   color: black; 
+  border: 1px solid black;
+  border-radius: 8px; 
 }
 
 .ten-rounds-info {
@@ -515,12 +519,18 @@ button:hover {
   font-weight: bold;
 }
 
+.total-questions{
+  margin-right: 60px;
+}
+
 .question-block {
   padding: 20px;
   width: 80%;
   max-width: 900px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 8px; 
 }
 
 .ten-rounds-question-block {
@@ -555,6 +565,8 @@ button:hover {
   font-size: 20px;
   color: black;
   margin: 20px 0;
+  border: 1px solid black;
+  border-radius: 8px; 
 }
 
 p em {
@@ -566,6 +578,20 @@ p em {
 .character-selection,
 .movie-selection {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  flex-wrap: wrap; 
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
@@ -577,18 +603,15 @@ h2 {
 
 .character-btn,
 .movie-btn {
+  font-family: "MiddleEarth";
+  font-size: 1rem;
   padding: 10px 20px;
   margin: 5px;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.character-btn:hover,
-.movie-btn:hover {
-  background-color: darkred;
+  text-align: center; 
 }
 
 button:disabled {
@@ -604,10 +627,51 @@ button:disabled {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
   background-color: darkred;
 }
+
+.character-btn.selected,
+.movie-btn.selected {
+    background-color: darkred;
+    border: 3px solid black;
+}
+
+.game-result {
+  display: none;
+  text-align: center;
+  font-size: 1rem; 
+  font-family: "Aniron";
+  color: #e0c078;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 500px; 
+  border-radius: 8px;
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.final-score {
+  margin-bottom: 2px;
+}
+
+.restart-btn {
+  padding: 6px 12px; 
+  font-size: 0.8rem; 
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background-color: darkred;
+}
+
 
