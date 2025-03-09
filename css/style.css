@@ -43,7 +43,7 @@ body {
 header {
   position: relative;
   grid-area: header;
-  padding: 16px;
+  padding: 22px;
   margin-bottom: 20px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
@@ -68,6 +68,18 @@ main {
   text-align: center;
 }
 
+footer {
+  grid-area: footer;
+  font-family: "Aniron";
+  background-size: cover;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  width: 100vw;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
 a {
   color: brown;
   text-decoration: none;
@@ -83,7 +95,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 2px;
 }
 
 .return {
@@ -92,6 +104,7 @@ a:hover {
   font-size: 2rem;
   text-decoration: none;
   margin-right: auto;
+  margin-left: 15px;
   order: -1;
 }
 
@@ -154,7 +167,7 @@ a:hover {
   padding: 10px 0;
   width: 200px;
   text-align: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(22px);
 }
 .account-menu.show {
   display: block;
@@ -196,29 +209,22 @@ a:hover {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
-  max-width: 90%;
-  width: 400px;
-  margin: auto;
-  text-align: center;
 }
 
 .login-title {
   color: black;
-  font-size: 2rem;
-  margin-bottom: 20px;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
 }
 
 .login-form label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
-  text-align: center;
 }
 
 .login-form input {
@@ -229,7 +235,6 @@ a:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
-  width: 100%;
 }
 
 button {
@@ -263,36 +268,25 @@ button:hover {
   margin-bottom: 20px;
 }
 
-/* registratie pagina */
-
-.registratie-container {
-  background: rgba(30, 30, 30, 0.9);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
-  max-width: 90%;
-  width: 400px;
-  margin: auto;
-  text-align: center;
+.remember-me {
+  padding-top: 20px;
 }
 
+/* registratie pagina */
 .registratie-title {
   color: black;
-  font-size: 2rem;
-  margin-bottom: 20px;
 }
 
 .registratie-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
 }
 
 .registratie-form label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
-  text-align: center;
 }
 
 .registratie-form input {
@@ -303,12 +297,16 @@ button:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
-  width: 100%;
 }
 
 .registratie-form input:focus {
   border-color: #d4af37;
   box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+}
+
+.required {
+  color: brown;
+  font-weight: bold;
 }
 
 .registratie-form button {
@@ -324,7 +322,6 @@ button:hover {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
-  width: 100%;
 }
 
 .registratie-form button:hover {
@@ -332,10 +329,53 @@ button:hover {
   box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
 }
 
-/* favorieten en blacklist */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
+.button-box {
+  text-align: center;
+  background: rgba(20, 20, 20, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #b08d57;
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
+  width: 220px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(to bottom, #d4af37, #7a5a35);
+  color: #000;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+}
+
+.button:hover {
+  background: #ffcc00;
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+}
+
+.button-box p {
+  color: #e0c078;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+/* favorieten en blacklist */
 .title-container h2 {
-  color: #3b2916;
+  color: black;
   font-size: 3rem;
 }
 
@@ -350,8 +390,13 @@ button:hover {
 .quote {
   flex-grow: 1;
 }
-.quote-container {
-  color: #e9df48;
+
+.quote-container li {
+  font-weight: 800;
+  color: black;
+  margin: 20px 0;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .icons a {
@@ -395,8 +440,9 @@ button:hover {
   width: 24px;
   height: 24px;
 }
+
 /* landing pagina project*/
-titel {
+.titel {
   color: black;
 }
 
@@ -557,8 +603,12 @@ main.container {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 20px;
   color: black;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .ten-rounds-info {
@@ -574,12 +624,18 @@ main.container {
   font-weight: bold;
 }
 
+.total-questions {
+  margin-right: 60px;
+}
+
 .question-block {
   padding: 20px;
   width: 80%;
   max-width: 900px;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .ten-rounds-question-block {
@@ -593,6 +649,8 @@ main.container {
 .quote-section {
   text-align: center;
   margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .like-btn,
@@ -625,6 +683,20 @@ p em {
 .character-selection,
 .movie-selection {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
@@ -636,18 +708,15 @@ h2 {
 
 .character-btn,
 .movie-btn {
+  font-family: "MiddleEarth";
+  font-size: 1rem;
   padding: 10px 20px;
   margin: 5px;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.character-btn:hover,
-.movie-btn:hover {
-  background-color: darkred;
+  text-align: center;
 }
 
 button:disabled {
@@ -663,10 +732,50 @@ button:disabled {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
+  background-color: darkred;
+}
+
+.character-btn.selected,
+.movie-btn.selected {
+  background-color: darkred;
+  border: 3px solid black;
+}
+
+.game-result {
+  display: none;
+  text-align: center;
+  font-size: 1rem;
+  font-family: "Aniron";
+  color: #e0c078;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 500px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.final-score {
+  margin-bottom: 2px;
+}
+
+.restart-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
   background-color: darkred;
 }
 
@@ -681,16 +790,4 @@ button:disabled {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
-}
-
-footer {
-  grid-area: footer;
-  font-family: "Aniron";
-  background-size: cover;
-  padding: 10px;
-  text-align: center;
-  color: black;
-  width: 100vw;
-  font-size: 1.1em;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }

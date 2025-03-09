@@ -19,8 +19,8 @@
             <li>
               <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
               <ul class="sub-menu quiz-options">
-                <li><a href="quiz-selection.html">Ten rounds</a></li>
-                <li><a href="quiz-selection.html">Sudden death</a></li>
+                <li><a href="ten-rounds.html">Ten rounds</a></li>
+                <li><a href="sudden-death.html">Sudden death</a></li>
               </ul>
             </li>
             <li>
@@ -36,18 +36,26 @@
         </aside>
       </header>
 
+      <div class="game-result">
+        <p class="final-score"></p>
+        <button class="restart-btn">Opnieuw starten</button>
+      </div>
+
       <main class="quiz-container sudden-death-container">
         <section class="game-info sudden-death-info">
-            <span class="question-number" id="question-number">1</span>/10
-            <span class="score" id="score">0</span>/20
+          <span class="question-number" id="question-number-count">?</span
+          ><span id="question-number">1</span> /
+          <span class="total-questions">10</span>
+          <span class="score" id="score-count">☆</span><span id="score">0</span> /
+          <span class="total-score">20</span>
         </section>
     
         <section class="question-block sudden-death-question-block">
+          <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
             <article class="quote-section">
                 <a href="#" class="like-btn" id="like-btn">♡</a>
                 <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
                 <blockquote class="quote" id="quote">...</blockquote>
-                <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
             </article>
     
             <section class="character-selection">
