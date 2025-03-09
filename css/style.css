@@ -10,8 +10,7 @@
 }
 @font-face {
   font-family: "Ringbearer";
-  src: url("../assets/fonts/RingbearerMedium-51mgZ.ttf")
-    format("truetype");
+  src: url("../assets/fonts/RingbearerMedium-51mgZ.ttf") format("truetype");
 }
 
 h1 {
@@ -95,7 +94,7 @@ a:hover {
 .ingelogd {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 20px;
 }
 
@@ -105,7 +104,7 @@ a:hover {
   font-size: 2rem;
   text-decoration: none;
   margin-right: auto;
-  order: -1; 
+  order: -1;
 }
 
 .return:hover {
@@ -209,21 +208,29 @@ a:hover {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+  max-width: 90%;
+  width: 400px;
+  margin: auto;
+  text-align: center;
 }
 
 .login-title {
   color: black;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .login-form label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
+  text-align: center;
 }
 
 .login-form input {
@@ -234,6 +241,7 @@ a:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
+  width: 100%;
 }
 
 button {
@@ -268,19 +276,35 @@ button:hover {
 }
 
 /* registratie pagina */
+
+.registratie-container {
+  background: rgba(30, 30, 30, 0.9);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+  max-width: 90%;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
 .registratie-title {
   color: black;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .registratie-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .registratie-form label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
+  text-align: center;
 }
 
 .registratie-form input {
@@ -291,16 +315,12 @@ button:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
+  width: 100%;
 }
 
 .registratie-form input:focus {
   border-color: #d4af37;
   box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
-}
-
-.required {
-  color: brown;
-  font-weight: bold;
 }
 
 .registratie-form button {
@@ -316,6 +336,7 @@ button:hover {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
+  width: 100%;
 }
 
 .registratie-form button:hover {
@@ -323,60 +344,12 @@ button:hover {
   box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.button-box {
-  text-align: center;
-  background: rgba(20, 20, 20, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  border: 2px solid #b08d57;
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
-  width: 220px;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 20px;
-  background: linear-gradient(to bottom, #d4af37, #7a5a35);
-  color: #000;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
-}
-
-.button:hover {
-  background: #ffcc00;
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
-}
-
-.button-box p {
-  color: #e0c078;
-  font-size: 1em;
-  margin-top: 10px;
-}
-
 /* favorieten en blacklist */
 
-.title-container h2{
- color: #7a5a35;
- font-size: 3rem;
+.title-container h2 {
+  color: #3b2916;
+  font-size: 3rem;
 }
-.dislike-btn{
-  background-color: #7a5a35;
-}
-
 
 .quote-container {
   display: flex;
@@ -387,59 +360,67 @@ button:hover {
 }
 
 .quote {
-  flex-grow: 1; 
+  flex-grow: 1;
+}
+.quote-container {
+  color: #e9df48;
 }
 
-.icons a{
+.icons a {
   text-decoration: none;
-  font-size: 20px; 
+  font-size: 20px;
 }
 
 .icons {
   display: flex;
   font-size: 2rem;
-  gap: 15px; 
-  justify-content: flex-end; 
-  margin-top: 10px; 
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-.icons a:hover{
-  transform: scale(1.8);
+.icons a:hover {
+  transform: scale(1.4);
 }
-
+.mainblack-fav {
+  background-image: url("../assets/images/background.jpg");
+}
 .title-container {
-  display: flex; 
+  display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .title-container .download-btn {
-  font-size: 24px; 
+  font-size: 24px;
   text-decoration: none;
   margin-left: 10px;
   transition: transform 0.2s ease-in-out;
 }
 
 .title-container .download-btn:hover {
-  transform: scale(1.5); 
+  transform: scale(1.2);
 }
 
-
+.download-btn img {
+  width: 24px;
+  height: 24px;
+}
 /* landing pagina project*/
-titel{
+titel {
   color: black;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: column;
   height: 250px;
   justify-content: space-between;
 }
 
-.info button{
-   margin: 0%;
+.info button {
+  margin: 0%;
 }
 
 * {
@@ -472,7 +453,7 @@ main.container {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%; 
+  width: 100%;
   max-width: 350px;
 }
 
@@ -502,26 +483,15 @@ main.container {
 }
 
 .tekst {
- 
   color: black;
   line-height: 1.5;
 }
-@media (min-width: 600px) and (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr)
-  }
-}
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr)
-  }
-}
 /*Quiz selectie pagina*/
 .container {
   position: relative;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .map-container {
@@ -578,19 +548,19 @@ main.container {
   margin: 0 auto;
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f4f4f4; 
-  background-size: cover; 
+  background-color: #f4f4f4;
+  background-size: cover;
   background-position: center;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .ten-rounds-container {
-  background-image: url('../assets/images/aigeneratedimage2.webp');
+  background-image: url("../assets/images/aigeneratedimage2.webp");
 }
 
 .sudden-death-container {
-  background-image: url('../assets/images/aigeneratedimage3.webp');
+  background-image: url("../assets/images/aigeneratedimage3.webp");
 }
 
 .game-info {
@@ -599,8 +569,8 @@ main.container {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 10px;
-  margin-bottom: 20px; 
-  color: black; 
+  margin-bottom: 20px;
+  color: black;
 }
 
 .ten-rounds-info {
@@ -639,11 +609,11 @@ main.container {
 
 .like-btn,
 .dislike-btn {
-    padding: 10px 20px;
-    margin: 5px;
-    color: black;
-    font-size: 1.5rem;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .like-btn:hover,
@@ -712,3 +682,14 @@ button:disabled {
   background-color: darkred;
 }
 
+@media (min-width: 600px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
