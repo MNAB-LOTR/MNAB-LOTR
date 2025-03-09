@@ -375,7 +375,7 @@ button:hover {
 
 /* favorieten en blacklist */
 .title-container h2 {
-  color: #3b2916;
+  color: black;
   font-size: 3rem;
 }
 
@@ -390,8 +390,13 @@ button:hover {
 .quote {
   flex-grow: 1;
 }
-.quote-container {
-  color: #e9df48;
+
+.quote-container li {
+  font-weight: 800;
+  color: black;
+  margin: 20px 0;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .icons a {
