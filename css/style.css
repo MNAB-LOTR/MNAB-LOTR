@@ -209,6 +209,9 @@ a:hover {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+  max-width: 90%;
+  width: 400px;
+  margin: auto;
 }
 
 .login-title {
@@ -273,23 +276,31 @@ button:hover {
 }
 
 /* registratie pagina */
-.registratie-title {
+.registration-title {
   color: black;
 }
-
-.registratie-form {
+.registration-container {
+  background: rgba(30, 30, 30, 0.9);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+  max-width: 90%;
+  width: 400px;
+  margin: auto;
+}
+.registration-form {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
 
-.registratie-form label {
+.registration-form label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
 }
 
-.registratie-form input {
+.registration-form input {
   background: rgba(50, 50, 50, 0.8);
   border: 2px solid #d4af37;
   color: #e0c078;
@@ -299,7 +310,7 @@ button:hover {
   outline: none;
 }
 
-.registratie-form input:focus {
+.registration-form input:focus {
   border-color: #d4af37;
   box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
 }
@@ -309,7 +320,7 @@ button:hover {
   font-weight: bold;
 }
 
-.registratie-form button {
+.registration-form button {
   margin-top: 20px;
   padding: 12px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
@@ -324,7 +335,7 @@ button:hover {
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
 }
 
-.registratie-form button:hover {
+.registration-form button:hover {
   background: #ffcc00;
   box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
 }
@@ -781,7 +792,7 @@ button:disabled {
 }
 
 /* media query*/
-@media (min-width: 600px) and (max-width: 1024px) {
+@media (min-width: 600px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
