@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorieten</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/logged-in.js"></script>
+  </head>
+  <body>
+    <header class="ingelogd">
+      <h1 class="game-name"><a href="landing-page.html" class="return-home">The one</a></h1>
+      <a href="landing-page.html" class="return">↩<a>
+      <aside class="account-overview">
+        <a class="account-status" onclick="toggleMenu(event)">🗝</a>
+        <ul class="account-menu">
+          <li><a href="landing-page.html">Home</a></li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+            <ul class="sub-menu quiz-options">
+              <li><a href="quiz-selection.html">Ten rounds</a></li>
+              <li><a href="quiz-selection.html">Sudden death</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+            <ul class="sub-menu quotes-options">
+              <li><a href="favorite-page.html">Favorites</a></li>
+              <li><a href="blacklist-page.html">Blacklist</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Instellingen</a></li>
+          <li><a href="#">Uitloggen</a></li>
+        </ul>
+      </aside>
+    </header>
+    
+    
+    <main class="mainblack-fav">
+      <section class="title-container">
+        <h2><strong>Favorieten</strong></h2>
+        <a href="#" class="download-btn" id="download-btn">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3502/3502477.png"
+            alt="Download"
+          />
+        </a>
+      </section>
+      <ul>
+        <section class="quote-container">
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum nulla
+            dolores voluptates deleniti ratione molestias.
+            <section class="icons">
+              <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
+            </section>
+          </li>
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+            error commodi quibusdam numquam dignissimos nulla, obcaecati molestiae
+            itaque aspernatur culpa temporibus eligendi asperiores vel maiores
+            laborum saepe suscipit unde quia?
+            <section class="icons">
+              <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
+            </section>
+          </li>
+          <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam dicta distinctio dolor vitae praesentium, molestiae quam ullam aliquam excepturi laboriosam nisi soluta facere inventore obcaecati ea vel aut, minus cumque.</li>
+          <section class="icons">
+            <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
+          </section>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 MNAB</p>
+    </footer>
+  </body>
+</html>

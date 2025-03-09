@@ -10,8 +10,7 @@
 }
 @font-face {
   font-family: "Ringbearer";
-  src: url("../assets/fonts/RingbearerMedium-51mgZ.ttf")
-    format("truetype");
+  src: url("../assets/fonts/RingbearerMedium-51mgZ.ttf") format("truetype");
 }
 
 h1 {
@@ -44,7 +43,7 @@ body {
 header {
   position: relative;
   grid-area: header;
-  padding: 16px;
+  padding: 22px;
   margin-bottom: 20px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
@@ -95,8 +94,8 @@ a:hover {
 .ingelogd {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  padding: 20px;
+  justify-content: space-between;
+  padding: 2px;
 }
 
 .return {
@@ -105,7 +104,8 @@ a:hover {
   font-size: 2rem;
   text-decoration: none;
   margin-right: auto;
-  order: -1; 
+  margin-left: 15px;
+  order: -1;
 }
 
 .return:hover {
@@ -129,7 +129,8 @@ a:hover {
 }
 
 .account-overview {
-  position: absolute;
+  position: relative;
+  z-index: 1100;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
@@ -156,6 +157,7 @@ a:hover {
 
 .account-menu {
   display: none;
+  z-index: 1000;
   position: absolute;
   top: 100%;
   right: 0;
@@ -165,9 +167,11 @@ a:hover {
   padding: 10px 0;
   width: 200px;
   text-align: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(22px);
 }
-
+.account-menu.show {
+  display: block;
+}
 .account-menu li {
   padding: 10px;
 }
@@ -214,6 +218,7 @@ a:hover {
 .login-form {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .login-form label {
@@ -263,6 +268,10 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.remember-me {
+  padding-top: 20px;
+}
+
 /* registratie pagina */
 .registratie-title {
   color: black;
@@ -271,6 +280,7 @@ button:hover {
 .registratie-form {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .registratie-form label {
@@ -364,63 +374,153 @@ button:hover {
 }
 
 /* favorieten en blacklist */
+.title-container h2 {
+  color: #3b2916;
+  font-size: 3rem;
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.quote {
+  flex-grow: 1;
+}
+.quote-container {
+  color: #e9df48;
+}
+
+.icons a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
 .icons {
   display: flex;
-  gap: 15px; 
-  justify-content: flex-end; 
-  margin-top: 10px; /
+  font-size: 2rem;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-.icons img{
-  width: 30px; 
-    height: auto;
-    cursor: pointer; 
-    transition: transform 0.2s ease-in-out;
+.icons a:hover {
+  transform: scale(1.4);
+}
+.mainblack-fav {
+  background-image: url("../assets/images/background.jpg");
+}
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.icons img :hover{
-  transform: scale(1.8);
+.title-container .download-btn {
+  font-size: 24px;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.title-container .download-btn:hover {
+  transform: scale(1.2);
+}
+
+.download-btn img {
+  width: 24px;
+  height: 24px;
 }
 
 /* landing pagina project*/
-.titel{
+.titel {
   color: black;
 }
-.grid{
+
+.info {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-between;
+}
+
+.info button {
+  margin: 0%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.container {
+  flex: 1;
+  padding: 20px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  gap: 20px;
+  justify-items: center;
 }
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+
+.kaart {
+  background: linear-gradient(to bottom, #d4af37, #a87c4f);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
 }
+
+.kaart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.media {
+  overflow: hidden;
+}
+
 .afbeelding {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-bottom: 2px solid #2c3e50;
 }
-.kaart {
 
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  flex-direction: row;
-
+.info {
+  padding: 15px;
 }
-.kaart:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
+
+.naam {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tekst {
+  color: black;
+  line-height: 1.5;
 }
 
 /*Quiz selectie pagina*/
 .container {
   position: relative;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .map-container {
@@ -477,19 +577,19 @@ button:hover {
   margin: 0 auto;
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f4f4f4; 
-  background-size: cover; 
+  background-color: #f4f4f4;
+  background-size: cover;
   background-position: center;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .ten-rounds-container {
-  background-image: url('../assets/images/aigeneratedimage2.webp');
+  background-image: url("../assets/images/aigeneratedimage2.webp");
 }
 
 .sudden-death-container {
-  background-image: url('../assets/images/aigeneratedimage3.webp');
+  background-image: url("../assets/images/aigeneratedimage3.webp");
 }
 
 .game-info {
@@ -500,10 +600,10 @@ button:hover {
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-bottom: 20px; 
-  color: black; 
+  margin-bottom: 20px;
+  color: black;
   border: 1px solid black;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .ten-rounds-info {
@@ -519,7 +619,7 @@ button:hover {
   font-weight: bold;
 }
 
-.total-questions{
+.total-questions {
   margin-right: 60px;
 }
 
@@ -530,7 +630,7 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid black;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .ten-rounds-question-block {
@@ -548,11 +648,11 @@ button:hover {
 
 .like-btn,
 .dislike-btn {
-    padding: 10px 20px;
-    margin: 5px;
-    color: black;
-    font-size: 1.5rem;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .like-btn:hover,
@@ -566,7 +666,7 @@ button:hover {
   color: black;
   margin: 20px 0;
   border: 1px solid black;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 p em {
@@ -580,16 +680,16 @@ p em {
   margin: 20px 0;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 ul {
   list-style-type: none;
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  flex-wrap: wrap; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
 }
@@ -611,7 +711,7 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-align: center; 
+  text-align: center;
 }
 
 button:disabled {
@@ -635,19 +735,19 @@ button:disabled {
 
 .character-btn.selected,
 .movie-btn.selected {
-    background-color: darkred;
-    border: 3px solid black;
+  background-color: darkred;
+  border: 3px solid black;
 }
 
 .game-result {
   display: none;
   text-align: center;
-  font-size: 1rem; 
+  font-size: 1rem;
   font-family: "Aniron";
   color: #e0c078;
   padding: 40px;
   background-color: rgba(0, 0, 0, 0.7);
-  width: 500px; 
+  width: 500px;
   border-radius: 8px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
   position: fixed;
@@ -662,8 +762,8 @@ button:disabled {
 }
 
 .restart-btn {
-  padding: 6px 12px; 
-  font-size: 0.8rem; 
+  padding: 6px 12px;
+  font-size: 0.8rem;
   color: black;
   border: none;
   border-radius: 5px;
@@ -674,4 +774,15 @@ button:disabled {
   background-color: darkred;
 }
 
+/* media query*/
+@media (min-width: 600px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
