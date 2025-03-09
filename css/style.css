@@ -68,18 +68,6 @@ main {
   text-align: center;
 }
 
-footer {
-  grid-area: footer;
-  font-family: "Aniron";
-  background-size: cover;
-  padding: 10px;
-  text-align: center;
-  color: black;
-  width: 100vw;
-  font-size: 1.1em;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-
 a {
   color: brown;
   text-decoration: none;
@@ -682,6 +670,7 @@ button:disabled {
   background-color: darkred;
 }
 
+/* media query*/
 @media (min-width: 600px) and (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -692,4 +681,16 @@ button:disabled {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+footer {
+  grid-area: footer;
+  font-family: "Aniron";
+  background-size: cover;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  width: 100vw;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
