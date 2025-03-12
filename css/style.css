@@ -81,7 +81,7 @@ footer {
 }
 
 a {
-  color: brown;
+  color: darkred;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
