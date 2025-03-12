@@ -91,7 +91,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.ingelogd {
+.logged-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
