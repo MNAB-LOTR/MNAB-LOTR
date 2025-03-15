@@ -15,7 +15,7 @@
 
 h1 {
   font-family: "Aniron";
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #f0e1a1;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
   letter-spacing: 2px;
@@ -47,14 +47,18 @@ header {
   margin-bottom: 15px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
-  font-size: 0.6rem;
   text-transform: uppercase;
   font-weight: bold;
   width: 100vw;
 }
 
+header h1 {
+  font-size: 1.5rem;
+}
+
 main {
   width: 80%;
+  max-width: 900px;
   grid-area: main;
   display: flex;
   flex-direction: column;
@@ -81,7 +85,7 @@ footer {
 }
 
 a {
-  color: brown;
+  color: darkred;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
@@ -91,7 +95,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.ingelogd {
+.logged-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -123,7 +127,7 @@ a:hover {
 .game-name {
   color: black;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-  font-size: 2rem;
+  font-size: 1.5rem;
   flex-grow: 1;
   text-align: center;
 }
@@ -286,6 +290,7 @@ button:hover {
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
   max-width: 90%;
   width: 400px;
+  height: 590px;
   margin: auto;
 }
 .registration-form {
@@ -393,9 +398,25 @@ button:hover {
 .quote-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
   width: 100%;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.quote-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.quote-container::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 10px;
+}
+
+.quote-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .quote {
@@ -410,6 +431,8 @@ button:hover {
   border: 1px solid black;
   border-radius: 8px;
   padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .icons a {
@@ -428,9 +451,17 @@ button:hover {
 .icons a:hover {
   transform: scale(1.4);
 }
+
 .mainblack-fav {
   background-image: url("../assets/images/background.jpg");
+  display: flex;
+  height: 76vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
 }
+
 .title-container {
   display: flex;
   align-items: center;
@@ -454,7 +485,7 @@ button:hover {
   height: 24px;
 }
 
-/* landing pagina project*/
+/* landing pagina projecten */
 .titel {
   color: black;
 }
@@ -500,6 +531,9 @@ main.container {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .kaart {
@@ -545,8 +579,8 @@ main.container {
   line-height: 1.5;
 }
 
-/*Quiz selectie pagina*/
-container {
+/* quiz selectie pagina */
+.container {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -563,6 +597,7 @@ container {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: none;
 }
 
 .map-container {
@@ -607,10 +642,10 @@ container {
   text-decoration: none;
 }
 
-/*Quiz game pagina*/
+/* quiz game pagina */
 .quiz-container {
   width: 80%;
-  margin: 0 auto;
+  max-width: 900px;
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #f4f4f4;
@@ -618,6 +653,7 @@ container {
   background-position: center;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
 .ten-rounds-container {
@@ -630,6 +666,7 @@ container {
 
 .game-info {
   font-family: "Ringbearer";
+  font-size: 1.6rem;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -712,6 +749,16 @@ p em {
   font-weight: 800;
 }
 
+.selection-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 .character-selection,
 .movie-selection {
   margin: 20px 0;
@@ -738,33 +785,19 @@ h2 {
   margin-bottom: 10px;
 }
 
-.selection {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  justify-content: center;
-}
-
-.character-selection,
-.movie-selection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
 .character-btn,
 .movie-btn {
   font-family: "Arial";
-  width: 100%;
-  max-width: 200px;
-  padding: 10px;
-  font-size: 15px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 5px;
+  color: black;
   border: none;
   border-radius: 5px;
-  color: black;
   cursor: pointer;
-  transition: background 0.3s ease;
+  text-align: center;
+  width: 200px;
+  min-width: 150px;
 }
 
 button:disabled {
@@ -800,7 +833,7 @@ button:disabled {
   color: #e0c078;
   padding: 40px;
   background-color: rgba(0, 0, 0, 0.7);
-  width: 500px;
+  width: 400px;
   border-radius: 8px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
   position: fixed;
@@ -827,7 +860,7 @@ button:disabled {
   background-color: darkred;
 }
 
-/* media query*/
+/* media queries */
 @media (max-width: 480px) {
   .map-container {
     width: 95%;
@@ -853,25 +886,22 @@ button:disabled {
     font-size: 14px;
   }
 }
-@media (min-width: 600px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+@media (max-width: 600px) {
   .login-container {
-    width: 90%;
+    width: 80%;
     max-width: 350px;
     padding: 20px;
   }
+
   .registration-container {
     width: 80%;
     max-width: 350px;
     padding: 10px;
     height: 600px;
   }
-  .registration-title {
-    font-size: 1.5em;
-  }
 }
+
 @media (max-width: 768px) {
   .map-container {
     width: 95%;
@@ -896,10 +926,9 @@ button:disabled {
   .game-selection {
     font-size: 16px;
   }
-}
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .quiz-container {
+    width: 95%;
+    padding: 15px; 
   }
 }
