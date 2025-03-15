@@ -43,11 +43,11 @@ body {
 header {
   position: relative;
   grid-area: header;
-  padding: 22px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
-  font-size: 2em;
+  font-size: 0.6rem;
   text-transform: uppercase;
   font-weight: bold;
   width: 100vw;
@@ -466,7 +466,7 @@ button:hover {
   justify-content: space-between;
 }
 
-.button-box p{
+.button-box p {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -474,7 +474,7 @@ button:hover {
   margin: 0%;
 }
 
-.cta{
+.cta {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -536,7 +536,7 @@ main.container {
   font-weight: 700;
   margin-bottom: 10px;
 }
-.intro{
+.intro {
   font-family: Arial, Helvetica, sans-serif;
 }
 .tekst {
@@ -546,23 +546,30 @@ main.container {
 }
 
 /*Quiz selectie pagina*/
-.container {
+container {
   position: relative;
   width: 100%;
   height: 100vh;
 }
 
+.mainquiz {
+  background-image: url("../assets/images/map.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .map-container {
-  position: relative;
+  position: absolute;
   width: 80%;
   margin: 20px auto;
   max-width: 800px;
-}
-
-.map-image {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .map-marker {
@@ -583,13 +590,13 @@ main.container {
 }
 
 .rounds {
-  top: 40%;
-  left: 30%;
+  top: 70%;
+  left: 35%;
 }
 
 .sudden-death {
   top: 60%;
-  left: 70%;
+  left: 65%;
 }
 
 .game-selection {
@@ -731,17 +738,33 @@ h2 {
   margin-bottom: 10px;
 }
 
+.selection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+}
+
+.character-selection,
+.movie-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .character-btn,
 .movie-btn {
   font-family: "Arial";
-  font-size: 1rem;
-  padding: 10px 20px;
-  margin: 5px;
-  color: black;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  font-size: 15px;
   border: none;
   border-radius: 5px;
+  color: black;
   cursor: pointer;
-  text-align: center;
+  transition: background 0.3s ease;
 }
 
 button:disabled {
@@ -805,23 +828,73 @@ button:disabled {
 }
 
 /* media query*/
+@media (max-width: 480px) {
+  .map-container {
+    width: 95%;
+    margin: 5px auto;
+  }
+
+  .map-marker {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .rounds {
+    top: 25%;
+    left: 20%;
+  }
+
+  .sudden-death {
+    top: 55%;
+    left: 70%;
+  }
+
+  .game-selection {
+    font-size: 14px;
+  }
+}
 @media (min-width: 600px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .login-container{
+  .login-container {
     width: 90%;
     max-width: 350px;
     padding: 20px;
   }
-  .registration-container{
+  .registration-container {
     width: 80%;
     max-width: 350px;
     padding: 10px;
     height: 600px;
   }
-  .registration-title{
+  .registration-title {
     font-size: 1.5em;
+  }
+}
+@media (max-width: 768px) {
+  .map-container {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .map-marker {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .rounds {
+    top: 50%;
+    left: 25%;
+  }
+
+  .sudden-death {
+    top: 70%;
+    left: 70%;
+  }
+
+  .game-selection {
+    font-size: 16px;
   }
 }
 
