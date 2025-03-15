@@ -928,7 +928,7 @@ button:disabled {
   }
 
   .quiz-container {
-    width: 95%; /* Decrease the width on smaller screens */
-    padding: 15px; /* Reduce padding */
+    width: 95%;
+    padding: 15px; 
   }
 }
