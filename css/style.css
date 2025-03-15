@@ -485,7 +485,7 @@ button:hover {
   height: 24px;
 }
 
-/* landing pagina project*/
+/* landing pagina projecten */
 .titel {
   color: black;
 }
@@ -579,7 +579,7 @@ main.container {
   line-height: 1.5;
 }
 
-/*Quiz selectie pagina*/
+/* quiz selectie pagina */
 .container {
   position: relative;
   width: 100%;
@@ -642,7 +642,7 @@ main.container {
   text-decoration: none;
 }
 
-/*Quiz game pagina*/
+/* quiz game pagina */
 .quiz-container {
   width: 80%;
   max-width: 900px;
@@ -666,7 +666,7 @@ main.container {
 
 .game-info {
   font-family: "Ringbearer";
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -860,7 +860,7 @@ button:disabled {
   background-color: darkred;
 }
 
-/* media query*/
+/* media queries */
 @media (max-width: 480px) {
   .map-container {
     width: 95%;
