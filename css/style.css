@@ -65,7 +65,7 @@ main {
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  padding: 50px;
+  padding: 17px;
   border-radius: 15px;
   box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
   margin: 0 auto;
@@ -929,6 +929,6 @@ button:disabled {
 
   .quiz-container {
     width: 95%;
-    padding: 15px; 
+    padding: 15px;
   }
 }
