@@ -424,6 +424,7 @@ button:hover {
 
 .quote {
   flex-grow: 1;
+  padding: 20px;
 }
 
 .quote-container li {
