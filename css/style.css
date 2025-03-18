@@ -349,7 +349,6 @@ button:hover {
   padding: 15px;
   border-radius: 10px;
   border: 2px solid #b08d57;
-  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.3);
   width: 220px;
 }
 
@@ -839,7 +838,6 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.7);
   width: 400px;
   border-radius: 8px;
-  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -862,6 +860,7 @@ button:disabled {
 
 .restart-btn:hover {
   background-color: darkred;
+  box-shadow: none;
 }
 
 /* media queries */
