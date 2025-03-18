@@ -40,7 +40,7 @@ body {
   overflow-x: hidden;
 }
 
-header {
+.header- {
   position: relative;
   grid-area: header;
   padding: 20px;
@@ -93,7 +93,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.logged-in {
+.header- {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -202,6 +202,8 @@ a:hover {
 
 .login-title {
   color: black;
+  padding: 20px;
+  text-align: center;
 }
 
 .login-form {
@@ -226,7 +228,7 @@ a:hover {
   outline: none;
 }
 
-button {
+.button- {
   margin-top: 20px;
   margin-bottom: 15px;
   padding: 10px;
@@ -241,8 +243,11 @@ button {
   transition: all 0.3s ease;
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
 }
-
-button:hover {
+button.login-registe {
+  background: linear-gradient(to bottom, #d4af37, #a87c4f);
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
+}
+.button-:hover {
   background: #ffcc00;
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
 }
@@ -293,7 +298,10 @@ button:hover {
   margin-top: 10px;
   color: #e0c078;
 }
-
+.registration-title {
+  padding: 20px;
+  text-align: center;
+}
 .registration-form input {
   background: rgba(50, 50, 50, 0.8);
   border: 2px solid #d4af37;
@@ -475,28 +483,6 @@ button:hover {
 }
 
 /* landing pagina projecten */
-.titel {
-  color: black;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  height: 250px;
-  justify-content: space-between;
-}
-
-.button-box p {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.info button {
-  margin: 0%;
-}
-
-.cta {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
 * {
   margin: 0;
@@ -504,15 +490,35 @@ button:hover {
   box-sizing: border-box;
 }
 
-body.pagina {
+body.page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(to bottom, #d7d7d7, #c2c9d0);
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: #8a8a8a;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #005f8c;
+}
+h2.game-name {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.title {
+  color: #000000;
+  font-size: 2.3rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main.container {
   flex: 1;
   padding: 20px;
+  margin-top: 20px;
 }
 
 .grid {
@@ -525,8 +531,8 @@ main.container {
   width: 100%;
 }
 
-.kaart {
-  background: linear-gradient(to bottom, #d4af37, #a87c4f);
+.card {
+  background: #ffffff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -535,7 +541,7 @@ main.container {
   max-width: 350px;
 }
 
-.kaart:hover {
+.card:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
@@ -544,7 +550,7 @@ main.container {
   overflow: hidden;
 }
 
-.afbeelding {
+.image {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -552,20 +558,46 @@ main.container {
 
 .info {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-between;
 }
 
-.naam {
+.name {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 10px;
 }
-.intro {
-  font-family: Arial, Helvetica, sans-serif;
-}
-.tekst {
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
+
+.text {
+  color: #555;
   line-height: 1.5;
+}
+
+.buttonlanding {
+  background-color: #8a8a8a;
+  color: #ffffff;
+  font-weight: 800;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.buttonlanding:hover {
+  background-color: #000000;
+  color: #ffedb6;
+}
+
+.footerlanding {
+  color: black;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* quiz selectie pagina */
@@ -838,11 +870,11 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.7);
   width: 400px;
   border-radius: 8px;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .final-score {

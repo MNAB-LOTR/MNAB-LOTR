@@ -1,85 +1,97 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sudden death</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/logged-in.js"></script>
     <script src="js/sudden-death-game.js"></script>
-</head>
-<body>
-    <header class="logged-in">
-        <h1 class="game-name"><a href="home.html" class="return-home">The one</a></h1>
-        <aside class="account-overview">
-          <a class="account-status" onclick="toggleMenu(event)">☰</a>
-          <ul class="account-menu">
-            <li><a href="home.html">Home</a></li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
-              <ul class="sub-menu quiz-options">
-                <li><a href="ten-rounds.html">Ten rounds</a></li>
-                <li><a href="sudden-death.html">Sudden death</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
-              <ul class="sub-menu quotes-options">
-                <li><a href="favorite-page.html">Favorites</a></li>
-                <li><a href="blacklist-page.html">Blacklist</a></li>
-              </ul>
-            </li>
-            <li><a href="login-page.html">Uitloggen</a></li>
-          </ul>
-        </aside>
-      </header>
+  </head>
+  <body>
+    <header class="header-">
+      <h1 class="game-name">
+        <a href="home.html" class="return-home">The one</a>
+      </h1>
+      <aside class="account-overview">
+        <a class="account-status" onclick="toggleMenu(event)">☰</a>
+        <ul class="account-menu">
+          <li><a href="home.html">Home</a></li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+            <ul class="sub-menu quiz-options">
+              <li><a href="ten-rounds.html">Ten rounds</a></li>
+              <li><a href="sudden-death.html">Sudden death</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+            <ul class="sub-menu quotes-options">
+              <li><a href="favorite-page.html">Favorites</a></li>
+              <li><a href="blacklist-page.html">Blacklist</a></li>
+            </ul>
+          </li>
+          <li><a href="login-page.html">Uitloggen</a></li>
+        </ul>
+      </aside>
+    </header>
 
-      <div class="game-result">
-        <p class="final-score"></p>
-        <button class="restart-btn">Opnieuw starten</button>
-      </div>
+    <div class="game-result">
+      <p class="final-score"></p>
+      <button class="restart-btn">Opnieuw starten</button>
+    </div>
 
-      <main class="quiz-container sudden-death-container">
-        <section class="game-info sudden-death-info">
-          <span class="question-number" id="question-number-count">Vraag:&nbsp;</span
-          ><span id="question-number">1</span> /
-          <span class="total-questions">10</span>
-          <span class="score" id="score-count">Score:&nbsp;</span><span id="score">0</span> /
-          <span class="total-score">20</span>
-        </section>
-    
-        <section class="question-block sudden-death-question-block">
-          <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
-            <article class="quote-section">
-                <a href="#" class="like-btn" id="like-btn">♡</a>
-                <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-                <blockquote class="quote" id="quote">"<span id="quote-text"></span>"</blockquote>
-            </article>
+    <main class="quiz-container sudden-death-container">
+      <section class="game-info sudden-death-info">
+        <span class="question-number" id="question-number-count"
+          >Vraag:&nbsp;</span
+        ><span id="question-number">1</span> /
+        <span class="total-questions">10</span>
+        <span class="score" id="score-count">Score:&nbsp;</span
+        ><span id="score">0</span> /
+        <span class="total-score">20</span>
+      </section>
 
-            <section class="selection-container">
-            <section class="character-selection selection">
-                <h2>Kies een personage:</h2>
-                <button class="character-btn"></button>
-                <button class="character-btn"></button>
-                <button class="character-btn"></button>
-            </section>
-    
-            <section class="movie-selection selection">
-                <h2>Kies een film:</h2>
-                <button class="movie-btn"></button>
-                <button class="movie-btn"></button>
-                <button class="movie-btn" ></button>
-            </section>
+      <section class="question-block sudden-death-question-block">
+        <p>
+          <em
+            >Een stem uit het verleden… Kun jij de spreker en de film
+            noemen?</em
+          >
+        </p>
+        <article class="quote-section">
+          <a href="#" class="like-btn" id="like-btn">♡</a>
+          <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
+          <blockquote class="quote" id="quote">
+            "<span id="quote-text"></span>"
+          </blockquote>
+        </article>
+
+        <section class="selection-container">
+          <section class="character-selection selection">
+            <h2>Kies een personage:</h2>
+            <button class="character-btn button-"></button>
+            <button class="character-btn button-"></button>
+            <button class="character-btn button-"></button>
           </section>
-    
-            <button class="submit-btn" id="submit">Ontdek de waarheid!</button>
+
+          <section class="movie-selection selection">
+            <h2>Kies een film:</h2>
+            <button class="movie-btn button-"></button>
+            <button class="movie-btn button-"></button>
+            <button class="movie-btn button-"></button>
+          </section>
         </section>
 
+        <button class="submit-btn button-" id="submit">
+          Ontdek de waarheid!
+        </button>
+      </section>
     </main>
-    
+
     <footer>
-        <p>© 2025 MNAB</p>
+      <p>© 2025 MNAB</p>
     </footer>
-</body>
+  </body>
 </html>
