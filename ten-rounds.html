@@ -10,74 +10,87 @@
     <script src="js/ten-rounds-game.js"></script>
   </head>
   <body>
-    <header class="logged-in">
-      <h1 class="game-name"><a href="home.html" class="return-home">The one</a></h1>
-        <aside class="account-overview">
-          <a class="account-status" onclick="toggleMenu(event)">☰</a>
-          <ul class="account-menu">
-            <li><a href="home.html">Home</a></li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
-              <ul class="sub-menu quiz-options">
-                <li><a href="ten-rounds.html">Ten rounds</a></li>
-                <li><a href="sudden-death.html">Sudden death</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
-              <ul class="sub-menu quotes-options">
-                <li><a href="favorite-page.html">Favorites</a></li>
-                <li><a href="blacklist-page.html">Blacklist</a></li>
-              </ul>
-            </li>
-            <li><a href="login-page.html">Uitloggen</a></li>
-          </ul>
-        </aside>
-      </header>
+    <header class="header-">
+      <h1 class="game-name">
+        <a href="home.html" class="return-home">The one</a>
+      </h1>
+      <aside class="account-overview">
+        <a class="account-status" onclick="toggleMenu(event)">☰</a>
+        <ul class="account-menu">
+          <li><a href="home.html">Home</a></li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+            <ul class="sub-menu quiz-options">
+              <li><a href="ten-rounds.html">Ten rounds</a></li>
+              <li><a href="sudden-death.html">Sudden death</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+            <ul class="sub-menu quotes-options">
+              <li><a href="favorite-page.html">Favorites</a></li>
+              <li><a href="blacklist-page.html">Blacklist</a></li>
+            </ul>
+          </li>
+          <li><a href="login-page.html">Uitloggen</a></li>
+        </ul>
+      </aside>
+    </header>
 
-      <div class="game-result">
-        <p class="final-score"></p>
-        <button class="restart-btn">Opnieuw starten</button>
-      </div>
+    <div class="game-result">
+      <p class="final-score"></p>
+      <button class="restart-btn">Opnieuw starten</button>
+    </div>
 
     <main class="quiz-container ten-rounds-container">
       <section class="game-info ten-rounds-info">
-        <span class="question-number" id="question-number-count">Vraag:&nbsp;</span
+        <span class="question-number" id="question-number-count"
+          >Vraag:&nbsp;</span
         ><span id="question-number">1</span> /
         <span class="total-questions">10</span>
-        <span class="score" id="score-count">Score:&nbsp;</span><span id="score">0</span> /
+        <span class="score" id="score-count">Score:&nbsp;</span
+        ><span id="score">0</span> /
         <span class="total-score">20</span>
       </section>
 
       <section class="question-block ten-rounds-question-block">
-        <p><em>Een stem uit het verleden… Kun jij de spreker en de film noemen?</em></p>
+        <p>
+          <em
+            >Een stem uit het verleden… Kun jij de spreker en de film
+            noemen?</em
+          >
+        </p>
         <article class="quote-section">
           <a href="#" class="like-btn" id="like-btn">♡</a>
           <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-          <blockquote class="quote" id="quote">"<span id="quote-text"></span>"</blockquote>
+          <blockquote class="quote" id="quote">
+            "<span id="quote-text"></span>"
+          </blockquote>
         </article>
 
         <section class="selection-container">
-        <section class="character-selection selection">
-          <h2>Kies een personage:</h2>
-          <ul>
-            <li><button class="character-btn"></button></li>
-            <li><button class="character-btn"></button></li>
-            <li><button class="character-btn"></button></li>
-          </ul>
+          <section class="character-selection selection">
+            <h2>Kies een personage:</h2>
+            <ul>
+              <li><button class="character-btn button-"></button></li>
+              <li><button class="character-btn button-"></button></li>
+              <li><button class="character-btn button-"></button></li>
+            </ul>
+          </section>
+
+          <section class="movie-selection selection">
+            <h2>Kies een film:</h2>
+            <ul>
+              <li><button class="movie-btn button-"></button></li>
+              <li><button class="movie-btn button-"></button></li>
+              <li><button class="movie-btn button-"></button></li>
+            </ul>
+          </section>
         </section>
 
-        <section class="movie-selection selection">
-          <h2>Kies een film:</h2>
-          <ul>
-            <li><button class="movie-btn"></button></li>
-            <li><button class="movie-btn"></button></li>
-            <li><button class="movie-btn"></button></li>
-          </ul>
-        </section>
-      </section>
-
-        <button class="submit-btn" id="submit">Ontdek de waarheid!</button>
+        <button class="submit-btn button-" id="submit">
+          Ontdek de waarheid!
+        </button>
       </section>
     </main>
 
