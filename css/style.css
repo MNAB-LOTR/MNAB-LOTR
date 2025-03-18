@@ -656,7 +656,30 @@ main.container {
 .game-selection:hover {
   text-decoration: none;
 }
+.game-selection {
+  position: relative;
+}
 
+.game-selection .tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 190%;
+  transform: translateX(-76%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: normal;
+  z-index: 10;
+  width: 200px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.game-selection:hover .tooltip {
+  visibility: visible;
+}
 /* quiz game pagina */
 .quiz-container {
   width: 80%;
