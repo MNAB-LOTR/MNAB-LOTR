@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const question = questions[currentQuestionIndex];
-    quoteElement.textContent = question.quote;
+    quoteElement.textContent = `"${question.quote}"`;
 
     characterButtons.forEach((button, index) => {
       button.textContent = question.options.characters[index] || "N/A";

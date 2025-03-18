@@ -12,9 +12,8 @@
 <body>
     <header class="logged-in">
         <h1 class="game-name"><a href="home.html" class="return-home">The one</a></h1>
-        <a href="quiz-selection.html" class="return">↩<a>
         <aside class="account-overview">
-          <a class="account-status" onclick="toggleMenu(event)">🗝</a>
+          <a class="account-status" onclick="toggleMenu(event)">☰</a>
           <ul class="account-menu">
             <li><a href="home.html">Home</a></li>
             <li>
@@ -31,7 +30,6 @@
                 <li><a href="blacklist-page.html">Blacklist</a></li>
               </ul>
             </li>
-            <li><a href="#">Instellingen</a></li>
             <li><a href="login-page.html">Uitloggen</a></li>
           </ul>
         </aside>
@@ -44,10 +42,10 @@
 
       <main class="quiz-container sudden-death-container">
         <section class="game-info sudden-death-info">
-          <span class="question-number" id="question-number-count">?</span
+          <span class="question-number" id="question-number-count">Vraag:&nbsp;</span
           ><span id="question-number">1</span> /
           <span class="total-questions">10</span>
-          <span class="score" id="score-count">☆</span><span id="score">0</span> /
+          <span class="score" id="score-count">Score:&nbsp;</span><span id="score">0</span> /
           <span class="total-score">20</span>
         </section>
     
@@ -56,7 +54,7 @@
             <article class="quote-section">
                 <a href="#" class="like-btn" id="like-btn">♡</a>
                 <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-                <blockquote class="quote" id="quote">...</blockquote>
+                <blockquote class="quote" id="quote">"<span id="quote-text"></span>"</blockquote>
             </article>
 
             <section class="selection-container">
