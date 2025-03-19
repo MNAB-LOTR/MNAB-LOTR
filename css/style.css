@@ -594,6 +594,12 @@ main.container {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.intro,
+.cta {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+}
+
 /* quiz selectie pagina */
 .container {
   position: relative;
