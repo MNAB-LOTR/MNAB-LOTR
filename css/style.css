@@ -90,7 +90,6 @@ a {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
-  text-transform: lowercase;
 }
 .button-box a {
   color: black;
@@ -602,8 +601,14 @@ main.container {
 
 .intro,
 .cta {
+  margin: 20px auto;
+  padding: 0;
+  text-align: center;
+  width: 80%;
+  max-width: 900px;
+  background: none;
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: left;
 }
 
