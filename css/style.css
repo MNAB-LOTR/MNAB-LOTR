@@ -87,12 +87,18 @@ footer {
 }
 
 a {
-  color: darkred;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
+  text-transform: lowercase;
 }
-
+.button-box a {
+  color: black;
+}
+.extra-options,
+a {
+  color: rgb(194, 155, 0);
+}
 a:hover {
   text-decoration: underline;
 }
@@ -598,6 +604,7 @@ main.container {
 .cta {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 10px;
+  text-align: left;
 }
 
 /* quiz selectie pagina */
