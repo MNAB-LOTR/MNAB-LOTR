@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title><%= title || 'Home' %></title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/logged-in.js"></script>
@@ -11,27 +11,27 @@
   <body>
     <header class="header-">
       <h1 class="quiz-name">
-        <a href="home.html" class="return-home">The one</a>
+        <a href="/home" class="return-home">The one</a>
       </h1>
       <aside class="account-overview">
         <a class="account-status" onclick="toggleMenu(event)">☰</a>
         <ul class="account-menu">
-          <li><a href="home.html">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li>
             <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
             <ul class="sub-menu quiz-options">
-              <li><a href="ten-rounds.html">Ten rounds</a></li>
-              <li><a href="sudden-death.html">Sudden death</a></li>
+              <li><a href="/ten-rounds">Ten rounds</a></li>
+              <li><a href="/sudden-death">Sudden death</a></li>
             </ul>
           </li>
           <li>
             <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
             <ul class="sub-menu quotes-options">
-              <li><a href="favorite-page.html">Favorites</a></li>
-              <li><a href="blacklist-page.html">Blacklist</a></li>
+              <li><a href="/favorites">Favorites</a></li>
+              <li><a href="/blacklist">Blacklist</a></li>
             </ul>
           </li>
-          <li><a href="login-page.html">Uitloggen</a></li>
+          <li><a href="/login">Uitloggen</a></li>
         </ul>
       </aside>
     </header>
@@ -48,19 +48,19 @@
       <section class="buttons">
         <article class="button-box">
           <button class="button-">
-            <a href="quiz-selection.html">Quotes quiz</a>
+            <a href="/quiz-selection">Quotes quiz</a>
           </button>
           <p>Speel de quiz</p>
         </article>
         <article class="button-box">
           <button class="button-">
-            <a href="favorite-page.html">Favorieten</a>
+            <a href="/favorites">Favorieten</a>
           </button>
           <p>Bekijk en beheer je favoriete quotes</p>
         </article>
         <article class="button-box">
           <button class="button-">
-            <a href="blacklist-page.html">Blacklists</a>
+            <a href="/blacklist">Blacklists</a>
           </button>
           <p>Beheer quotes die je niet meer wilt zien in de quiz</p>
         </article>

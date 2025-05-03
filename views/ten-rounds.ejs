@@ -6,37 +6,36 @@
     <title>Ten rounds</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/logged-in.js"></script>
-    <script src="js/ten-rounds-game.js"></script>
+    <script src="/js/logged-in.js"></script>
+    <script src="/js/ten-rounds-game.js"></script>
   </head>
   <body>
     <header class="header-">
       <h1 class="quiz-name">
-        <a href="home.html" class="return-home">The one</a>
+        <a href="/home" class="return-home">The one</a>
       </h1>
       <aside class="account-overview">
         <a class="account-status" onclick="toggleMenu(event)">☰</a>
         <ul class="account-menu">
-          <li><a href="home.html">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li>
             <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
             <ul class="sub-menu quiz-options">
-              <li><a href="ten-rounds.html">Ten rounds</a></li>
-              <li><a href="sudden-death.html">Sudden death</a></li>
+              <li><a href="/ten-rounds">Ten rounds</a></li>
+              <li><a href="/sudden-death">Sudden death</a></li>
             </ul>
           </li>
           <li>
             <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
             <ul class="sub-menu quotes-options">
-              <li><a href="favorite-page.html">Favorites</a></li>
-              <li><a href="blacklist-page.html">Blacklist</a></li>
+              <li><a href="/favorites">Favorites</a></li>
+              <li><a href="/blacklist">Blacklist</a></li>
             </ul>
           </li>
-          <li><a href="login-page.html">Uitloggen</a></li>
+          <li><a href="/login">Uitloggen</a></li>
         </ul>
       </aside>
     </header>
-
     <div class="game-result">
       <p class="final-score"></p>
       <button class="restart-btn button-">Opnieuw starten</button>

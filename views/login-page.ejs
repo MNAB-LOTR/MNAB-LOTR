@@ -4,36 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header class="header-" >
+    <header class="header-">
       <h1 class="login-title">Login</h1>
     </header>
+    
     <main class="login-container">
-      <form class="login-form">
+      <form class="login-form" action="/login" method="POST">
         <label for="naam">Gebruikersnaam<span class="required">*</span></label>
-        <input type="text" id="naam" required />
+        <input type="text" id="naam" name="username" required />
 
         <label for="password">Wachtwoord<span class="required">*</span></label>
-        <input type="password" id="password" required />
+        <input type="password" id="password" name="wachtwoord" required />
 
         <section class="remember-me">
           <input type="checkbox" id="remember" />
           <label for="remember">Aangemeld blijven</label>
         </section>
 
-        <button type="submit" class="button-"><a class="login-register" href="home.html">INLOGGEN</a></button>
+        <button type="submit" class="button-">INLOGGEN</button>
       </form>
 
-      <p class="extra-options">
+      <div class="extra-options">
         <a href="#"><strong>Wachtwoord vergeten?</strong></a>
-        <p>
-          Nog geen account?
-        </p>
-        <a href="registration-page.html">Account aanmaken</a>
-      </p>
+        <p>Nog geen account?</p>
+        <a href="/register">Account aanmaken</a>
+      </div>
     </main>
 
     <footer class="footer">
