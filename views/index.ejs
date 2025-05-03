@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Landings pagina' %></title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/lotr-login.js"></script>
+  </head>
+  <body class="page">
+    <header class="header">
+      <nav>
+        <h1 class="title">Kies je favoriete game!</h1>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="grid">
+        <% games.forEach(function(game) { %>
+        <article class="card">
+          <figure class="media">
+            <img src="<%= game.image %>" class="image" alt="<%= game.name %>" />
+          </figure>
+          <section class="info">
+            <section>
+              <h2 class="game-name"><%= game.name %></h2>
+              <p class="description"><%= game.description %></p>
+            </section>
+            <button class="buttonlanding">Schrijf je in</button>
+          </section>
+        </article>
+        <% }); %>
+      </section>
+    </main>
+
+    <footer class="footerlanding">
+      <p>© 2025 MNAB</p>
+    </footer>
+  </body>
+</html>
