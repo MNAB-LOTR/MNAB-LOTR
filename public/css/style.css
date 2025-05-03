@@ -91,6 +91,7 @@ a {
   font-weight: bold;
   transition: color 0.3s ease;
 }
+
 .button-box a {
   color: black;
 }
@@ -231,6 +232,8 @@ a:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 5px;
 }
 
 .button- {
@@ -288,25 +291,24 @@ a:hover {
   background: rgba(30, 30, 30, 0.9);
   padding: 40px;
   border-radius: 15px;
-  max-width: 90%;
-  width: 400px;
-  height: 590px;
+  max-width: 400px;
+  height: 500px;
   margin: auto;
 }
 
-.registration-form {
+.registration-container {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
 
-.registration-form label {
+.registration-container label {
   font-size: 1.2em;
   margin-top: 10px;
   color: #e0c078;
 }
 
-.registration-form input {
+.registration-container input {
   background: rgba(50, 50, 50, 0.8);
   border: 2px solid #d4af37;
   color: #e0c078;
@@ -314,9 +316,12 @@ a:hover {
   font-size: 1em;
   border-radius: 5px;
   outline: none;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 5px;
 }
 
-.registration-form input:focus {
+.registration-container input:focus {
   border-color: #d4af37;
   box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
 }
@@ -326,7 +331,7 @@ a:hover {
   font-weight: bold;
 }
 
-.registration-form button {
+.registration-container button {
   margin-top: 20px;
   padding: 12px;
   background: linear-gradient(to bottom, #d4af37, #a87c4f);
@@ -341,7 +346,7 @@ a:hover {
   box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
 }
 
-.registration-form button:hover {
+.registration-container button:hover {
   background: #ffcc00;
   box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
 }
