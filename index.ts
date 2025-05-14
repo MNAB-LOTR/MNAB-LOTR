@@ -76,21 +76,28 @@ async function handleRegister(req: Request, res: Response) {
   const { email, password, confirmPassword } = req.body;
 
   if (!email || !password || !confirmPassword) {
-    return res.status(400).send("Vul alle velden in.");
+    return res.render("registration-page", {
+      title: "Registratie",
+      error: "Vul alle velden in.",
+    });
   }
 
   if (password !== confirmPassword) {
-    return res.status(400).send("Wachtwoorden komen niet overeen.");
+    return res.render("registration-page", {
+      title: "Registratie",
+      error: "Wachtwoorden komen niet overeen.",
+    });
   }
 
   try {
     await createUser({ email, password });
     return res.redirect("/login");
   } catch (error: any) {
-    console.error("❌ Error tijdens registratie:", error);
-    return res
-      .status(500)
-      .send(error.message || "Er ging iets mis bij registratie.");
+    console.error("❌ Error tijdens registratie:", error.message);
+    return res.render("registration-page", {
+      title: "Registratie",
+      error: error.message || "Er ging iets mis bij registratie.",
+    });
   }
 }
 
