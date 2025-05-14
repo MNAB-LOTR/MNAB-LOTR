@@ -95,6 +95,13 @@ a {
 .button-box a {
   color: black;
 }
+
+.extra-options,
+p,
+a {
+  font-size: 0.95em;
+}
+
 .extra-options,
 a {
   color: rgb(194, 155, 0);
@@ -269,6 +276,7 @@ a:hover {
 
 .remember-me {
   padding-top: 20px;
+  font-size: 0.8em;
 }
 
 .login-register {
