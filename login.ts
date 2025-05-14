@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcryptjs';
 
-const MONGO_URI = "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@cluster0.mongodb.net/";
+const MONGO_URI = "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
 const DB_NAME = "MNAB-LOTR"; 
 const COLLECTION_NAME = "users";
 
