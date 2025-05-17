@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const scoreElement = document.getElementById("score");
   const likeButton = document.getElementById("like-btn");
   const dislikeButton = document.getElementById("dislike-btn");
+  const modal = document.getElementById("reasonModal");
+  const reasonInput = document.getElementById("reasonInput");
+  const submitReasonBtn = document.getElementById("submitReasonBtn");
+  const cancelReasonBtn = document.getElementById("cancelReasonBtn");
 
   let currentQuestionIndex = 0;
   let score = 0;
@@ -123,6 +127,56 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     questionNumberElement.textContent = currentQuestionIndex + 1;
   }
+
+  dislikeButton.addEventListener("click", function () {
+    modal.style.display = "flex";
+    reasonInput.value = "";
+  });
+
+  submitReasonBtn.onclick = function () {
+    const reason = reasonInput.value.trim();
+    if (!reason) {
+      alert(
+        "Geef een reden op waarom je de quote op de zwarte lijst wilt zetten."
+      );
+      return;
+    }
+
+    const question = questions[currentQuestionIndex];
+    const quoteText = question.quote;
+
+    fetch("/api/blacklist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: "currentUser", 
+        quote: quoteText,
+        reason: reason,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          alert("Quote succesvol geblacklist!");
+          modal.style.display = "none";
+          currentQuestionIndex++;
+          loadQuestion();
+        } else {
+          alert("Fout bij blacklisten");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Fout bij blacklisten");
+        modal.style.display = "none";
+      });
+  };
+
+  cancelReasonBtn.onclick = function () {
+    modal.style.display = "none";
+  };
 
   function selectButton(buttons, selectedValue, newValue) {
     buttons.forEach((btn) => btn.classList.remove("selected"));

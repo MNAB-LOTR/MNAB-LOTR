@@ -3,6 +3,12 @@ import path from "path";
 import { createUser } from "./registration";
 import { loginUser } from "./login";
 import { check, validationResult } from "express-validator";
+import {
+  initBlacklist,
+  addToBlacklist,
+  getBlacklistedQuotes,
+} from "./blacklist";
+
 const app = express();
 const port = 3000;
 
@@ -125,8 +131,39 @@ app.get("/favorites", (req: Request, res: Response) => {
   res.render("favorite-page", { title: "Favorieten" });
 });
 
-app.get("/blacklist", (req: Request, res: Response) => {
-  res.render("blacklist-page", { title: "Blacklist" });
+app.get("/blacklist", async function (req, res) {
+  const userId = "currentUser"; 
+
+  try {
+    const blacklistedQuotes = await getBlacklistedQuotes(userId);
+    res.render("blacklist-page", {
+      title: "Blacklist",
+      blacklistedQuotes: blacklistedQuotes,
+    });
+  } catch (error) {
+    console.error("Error fetching blacklisted quotes:", error);
+    res.status(500).send("Server error");
+  }
+});
+
+app.post("/api/blacklist", function (req: Request, res: Response) {
+  const userId = req.body.userId;
+  const quote = req.body.quote;
+  const reason = req.body.reason;
+
+  if (!userId || !quote || !reason) {
+    res.status(400).json({ error: "Missing userId, quote or reason" });
+    return;
+  }
+
+  addToBlacklist(userId, quote, reason)
+    .then(() => {
+      res.json({ message: "Quote added to blacklist" });
+    })
+    .catch((error) => {
+      console.error("Error adding to blacklist:", error);
+      res.status(500).json({ error: "Failed to add to blacklist" });
+    });
 });
 
 app.get("/home", (req: Request, res: Response) => {
