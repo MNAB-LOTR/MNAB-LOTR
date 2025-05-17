@@ -178,6 +178,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     modal.style.display = "none";
   };
 
+  likeButton.addEventListener("click", function () {
+    var question = questions[currentQuestionIndex];
+    var quoteText = question.quote;
+
+    fetch("/api/favorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: "currentUser",
+        quote: quoteText,
+      }),
+    })
+      .then(function (res) {
+        if (!res.ok) {
+          throw new Error("Server returned status " + res.status);
+        }
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Expected JSON but got " + contentType);
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        if (data.message) {
+          alert("Quote succesvol toegevoegd!");
+        } else {
+          alert("Fout bij toevoegen aan favorieten.");
+        }
+      })
+      .catch(function (error) {
+        console.error("Fetch error:", error);
+        alert("Fout bij toevoegen aan favorieten.");
+      });
+  });
+
   function selectButton(buttons, selectedValue, newValue) {
     buttons.forEach((btn) => btn.classList.remove("selected"));
     if (selectedValue !== newValue) {
