@@ -46,22 +46,14 @@
       </section>
       <ul>
         <section class="quote-container">
+          <% if (favoriteQuotes.length === 0) { %>
+          <li>Geen favoriete quotes gevonden.</li>
+          <% } else { %> <% favoriteQuotes.forEach(function(quote) { %>
           <li>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            nulla dolores voluptates deleniti ratione molestias.
-            <section class="icons">
-              <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-            </section>
+            <p>"<%= quote %>"</p>
+            <a href="#" class="delete-quote">🗑</a>
           </li>
-          <li>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-            error commodi quibusdam numquam dignissimos nulla, obcaecati
-            molestiae itaque aspernatur culpa temporibus eligendi asperiores vel
-            maiores laborum saepe suscipit unde quia?
-            <section class="icons">
-              <a href="#" class="dislike-btn" id="dislike-btn">🗑</a>
-            </section>
-          </li>
+          <% }); %> <% } %>
         </section>
       </ul>
     </main>

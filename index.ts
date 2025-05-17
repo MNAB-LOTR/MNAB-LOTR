@@ -3,6 +3,13 @@ import path from "path";
 import { createUser } from "./registration";
 import { loginUser } from "./login";
 import { check, validationResult } from "express-validator";
+import {
+  initBlacklist,
+  addToBlacklist,
+  getBlacklistedQuotes,
+} from "./blacklist";
+import { initFavorites, addToFavorites, getFavoriteQuotes } from "./favorite";
+
 const app = express();
 const port = 3000;
 import session = require("express-session");
@@ -142,13 +149,85 @@ async function handleLogin(req: Request, res: Response) {
   }
 }
 
+app.get("/favorites", async (req: Request, res: Response) => {
+  let userId = "currentUser";
 
-app.get("/favorites", (req, res) => {
-  res.render("favorite-page", { title: "Favorieten" });
+  if (typeof req.query.userId === "string") {
+    userId = req.query.userId;
+  }
+
+  try {
+    const favoriteQuotes = await getFavoriteQuotes(userId);
+    const message =
+      typeof req.query.message === "string" ? req.query.message : null;
+
+    res.render("favorite-page", {
+      title: "Favorites",
+      favoriteQuotes: favoriteQuotes,
+      message: message,
+    });
+  } catch (error) {
+    console.error("Error fetching favorite quotes:", error);
+    res.status(500).send("Server error");
+  }
 });
 
-app.get("/blacklist", (req, res) => {
-  res.render("blacklist-page", { title: "Blacklist" });
+app.post("/api/favorites", async function (req: Request, res: Response) {
+  const userId = req.body.userId;
+  const quote = req.body.quote;
+
+  if (!userId || !quote) {
+    res.status(400).json({ error: "Missing userId or quote" });
+    return;
+  }
+
+  try {
+    const result = await addToFavorites(userId, quote);
+
+    if ((result as any).acknowledged === false) {
+      res.status(409).json({ message: "Quote already in favorites" });
+    } else {
+      res.json({ message: "Quote added to favorites" });
+    }
+  } catch (error) {
+    console.error("Error adding to favorites:", error);
+    res.status(500).json({ error: "Failed to add to favorites" });
+  }
+});
+
+app.get("/blacklist", async function (req, res) {
+  const userId = "currentUser";
+
+  try {
+    const blacklistedQuotes = await getBlacklistedQuotes(userId);
+    res.render("blacklist-page", {
+      title: "Blacklist",
+      blacklistedQuotes: blacklistedQuotes,
+    });
+  } catch (error) {
+    console.error("Error fetching blacklisted quotes:", error);
+    res.status(500).send("Server error");
+  }
+});
+
+app.post("/api/blacklist", function (req: Request, res: Response) {
+  const userId = req.body.userId;
+  const quote = req.body.quote;
+  const reason = req.body.reason;
+
+  if (!userId || !quote || !reason) {
+    res.status(400).json({ error: "Missing userId, quote or reason" });
+    return;
+  }
+
+  addToBlacklist(userId, quote, reason)
+    .then(() => {
+      res.json({ message: "Quote added to blacklist" });
+    })
+    .catch((error) => {
+      console.error("Error adding to blacklist:", error);
+      res.status(500).json({ error: "Failed to add to blacklist" });
+    });
 });
 
 app.get("/home", (req, res) => {
