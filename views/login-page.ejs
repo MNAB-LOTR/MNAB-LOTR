@@ -15,10 +15,11 @@
     <main class="login-container">
 
       <% if (message) { %>
-        <div class="flash-message">
-          <%= message.content %>
-        </div>
+      <div class="flash-message <%= message.type %>">
+      <%= message.content %>
+      </div>
       <% } %>
+
 
       <form class="login-form" action="/login" method="POST">
         <label for="email">Gebruikersnaam<span class="required"></span></label>

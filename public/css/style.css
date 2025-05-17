@@ -998,6 +998,21 @@ button:disabled {
   transition: all 0.3s ease;
 }
 
+.flash-message {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: white;
+}
+.flash-message.error {
+  background-color: #e74c3c;
+}
+.flash-message.success {
+  background-color: #2ecc71;
+}
+
+
 /* media queries */
 @media (max-width: 480px) {
   .map-container {

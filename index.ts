@@ -78,7 +78,7 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("registration-page", { title: "Registratie" });
+  res.render("registration-page", { title: "Registratie", error: req.session.message });
 });
 
 app.post("/register", (req, res) => {
@@ -108,15 +108,23 @@ async function handleRegister(req: Request, res: Response) {
 
   try {
     await createUser({ email, password });
+
+    req.session.message = {
+      type: "success",
+      content: "Registratie succesvol. Je kunt nu inloggen.",
+    };
+
     return res.redirect("/login");
   } catch (error: any) {
     console.error("Error tijdens registratie:", error.message);
+
     return res.render("registration-page", {
       title: "Registratie",
       error: error.message || "Er ging iets mis bij registratie.",
     });
   }
 }
+
 
 async function handleLogin(req: Request, res: Response) {
   const { email, password } = req.body;

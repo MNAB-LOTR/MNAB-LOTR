@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcryptjs';
+import { error } from 'console';
 
 const MONGO_URI = "mongodb+srv://amelie_bontemps:Am3Lo678@clusterlotr.ym74pn1.mongodb.net/";
 const DB_NAME = "MNAB-LOTR"; 
@@ -28,7 +29,7 @@ export async function createUser({ email, password }: UserInput): Promise<void> 
 
   const existingUser = await users.findOne({ email });
   if (existingUser) {
-    throw new Error('Gebruiker bestaat al');
+    throw new Error("Gebruiker bestaat al."); // Toont aan dat de gebruiker al bestaat al
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);

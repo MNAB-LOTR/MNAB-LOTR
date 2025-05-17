@@ -13,6 +13,17 @@
     </header>
 
     <main class="registration-container">
+
+     <% if (message) { %>
+    <div class="flash-message error">
+    <%= message.content %>
+    </div>
+    <% } %>
+    <% if (error) { %>
+    <div class="flash-message error">
+    <%= error %>
+    </div>
+    <% } %>
       
       <form action="/register" method="POST">
         <label for="naam">Gebruikersnaam<span class="required">*</span></label>
