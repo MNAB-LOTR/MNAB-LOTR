@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let questions = [];
 
   const API_KEY = "D0O13tGGVgcrpwoe7ZnA";
-  const currentUserId = "userId";
 
   async function fetchData() {
     try {
@@ -178,6 +177,41 @@ document.addEventListener("DOMContentLoaded", async () => {
   cancelReasonBtn.onclick = function () {
     modal.style.display = "none";
   };
+
+  likeButton.addEventListener("click", function () {
+    var question = questions[currentQuestionIndex];
+    var quoteText = question.quote;
+
+    fetch("/api/favorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: currentUserId,
+        quote: quoteText,
+      }),
+    })
+      .then(function (res) {
+        if (!res.ok) {
+          throw new Error("Server returned status " + res.status);
+        }
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Expected JSON but got " + contentType);
+        }
+        return res.json();
+      })
+      .then(function (data) {
+        if (data.message) {
+          alert("Quote succesvol toegevoegd aan favorieten!");
+        } else {
+          alert("Fout bij toevoegen aan favorieten.");
+        }
+      })
+      .catch(function (error) {
+        console.error("Fetch error:", error);
+        alert("Fout bij toevoegen aan favorieten.");
+      });
+  });
 
   function selectButton(buttons, selectedValue, newValue) {
     buttons.forEach((btn) => btn.classList.remove("selected"));

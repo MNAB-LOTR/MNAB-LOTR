@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: "currentUser", 
+        userId: "currentUser",
         quote: quoteText,
         reason: reason,
       }),
