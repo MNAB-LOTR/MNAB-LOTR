@@ -12,15 +12,25 @@ import { initFavorites, addToFavorites, getFavoriteQuotes } from "./favorite";
 
 const app = express();
 const port = 3000;
+import session = require("express-session");
+import { flashMiddleware } from "./middelware/flashMiddleware";
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: "geheim",
+  resave: false,
+  saveUninitialized: true,
+}));
+app.use(flashMiddleware);
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   const games = [
     {
       name: "Lord of the Rings",
@@ -63,19 +73,19 @@ app.get("/", (req: Request, res: Response) => {
   res.render("index", { title: "Landingspagina", games });
 });
 
-app.get("/login", (req: Request, res: Response) => {
+app.get("/login", (req, res) => {
   res.render("login-page", { title: "Login" });
 });
 
-app.get("/register", (req: Request, res: Response) => {
+app.get("/register", (req, res) => {
   res.render("registration-page", { title: "Registratie" });
 });
 
-app.post("/register", (req: Request, res: Response) => {
+app.post("/register", (req, res) => {
   handleRegister(req, res);
 });
 
-app.post("/login", (req: Request, res: Response) => {
+app.post("/login", (req, res) => {
   handleLogin(req, res);
 });
 
@@ -100,7 +110,7 @@ async function handleRegister(req: Request, res: Response) {
     await createUser({ email, password });
     return res.redirect("/login");
   } catch (error: any) {
-    console.error("❌ Error tijdens registratie:", error.message);
+    console.error("Error tijdens registratie:", error.message);
     return res.render("registration-page", {
       title: "Registratie",
       error: error.message || "Er ging iets mis bij registratie.",
@@ -112,7 +122,11 @@ async function handleLogin(req: Request, res: Response) {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).send("Vul alle velden in.");
+    req.session.message = {
+      type: "error",
+      content: "Vul alle velden in.",  
+    };
+    return res.redirect("/login");
   }
 
   try {
@@ -120,11 +134,18 @@ async function handleLogin(req: Request, res: Response) {
     if (success) {
       return res.redirect("/home");
     } else {
-      return res.status(401).send("Ongeldige inloggegevens.");
+      req.session.message = {
+        type: "error",
+        content:"Ongeldige inloggegevens.",
+      };
+      return res.redirect("/login");
     }
   } catch (error: any) {
-    console.error("❌ Login fout:", error.message);
-    return res.status(401).send(error.message);
+    req.session.message = {
+      type: "error",
+      content: error.message || "Er ging iets mis bij inloggen.",
+    };
+    return res.redirect("/login");
   }
 }
 
@@ -209,22 +230,22 @@ app.post("/api/blacklist", function (req: Request, res: Response) {
     });
 });
 
-app.get("/home", (req: Request, res: Response) => {
+app.get("/home", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
-app.get("/quiz-selection", (req: Request, res: Response) => {
+app.get("/quiz-selection", (req, res) => {
   res.render("quiz-selection", { title: "Quiz selectie" });
 });
 
-app.get("/sudden-death", (req: Request, res: Response) => {
+app.get("/sudden-death", (req, res) => {
   res.render("sudden-death", { title: "Sudden Death" });
 });
 
-app.get("/ten-rounds", (req: Request, res: Response) => {
+app.get("/ten-rounds", (req, res) => {
   res.render("ten-rounds", { title: "Ten Rounds" });
 });
 
 app.listen(port, () => {
-  console.log(`✅ Server gestart op http://localhost:${port}`);
+  console.log(`Server gestart op http://localhost:${port}`);
 });
