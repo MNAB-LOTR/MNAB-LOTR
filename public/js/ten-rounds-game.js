@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
       .then(function (data) {
         if (data.message) {
-          alert("Quote succesvol toegevoegd aan favorieten!");
+          alert("Quote succesvol toegevoegd!");
         } else {
           alert("Fout bij toevoegen aan favorieten.");
         }
