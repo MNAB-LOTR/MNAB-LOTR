@@ -17,7 +17,7 @@ async function connectDB() {
   if (!db) {
     await client.connect();
     db = client.db(DB_NAME);
-    console.log('✅ Verbonden met MongoDB');
+    console.log('Verbonden met MongoDB');
   }
   return db;
 }
@@ -39,5 +39,5 @@ export async function createUser({ email, password }: UserInput): Promise<void> 
     createdAt: new Date(),
   });
 
-  console.log('✅ Gebruiker succesvol aangemaakt');
+  console.log('Gebruiker succesvol aangemaakt');
 }

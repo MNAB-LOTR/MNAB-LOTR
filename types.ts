@@ -3,10 +3,10 @@ interface User {
     name: string,
     email: string
 }
-export interface FlashMessage {
-    type: "success"|"error" |"info";
-    message: string;
-}
+export type FlashMessage = {
+    type: "error" | "success";
+    content: string; 
+  };
 
 export interface SessionData {
     user?: User;
