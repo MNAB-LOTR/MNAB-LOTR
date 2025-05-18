@@ -79,9 +79,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
+  var message = null;
+
+  if (req.session && req.session.message) {
+    message = req.session.message;
+    delete req.session.message;
+  }
+
   res.render("registration-page", {
     title: "Registratie",
-    error: req.session.message,
+    message: message,
   });
 });
 
@@ -134,7 +141,7 @@ async function handleRegister(req: Request, res: Response) {
 
     return res.render("registration-page", {
       title: "Registratie",
-      error: error.message || "Er ging iets mis bij registratie.",
+      error: "Er ging iets mis bij registratie.",
     });
   }
 }
