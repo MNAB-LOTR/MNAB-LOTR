@@ -133,6 +133,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     reasonInput.value = "";
   });
 
+  const userId = localStorage.getItem("userId");
+
   submitReasonBtn.onclick = function () {
     const reason = reasonInput.value.trim();
     if (!reason) {
@@ -144,14 +146,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const question = questions[currentQuestionIndex];
     const quoteText = question.quote;
+    const character = question.correctCharacter;
 
     fetch("/api/blacklist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
-        userId: "currentUser",
+        character: character,
         quote: quoteText,
         reason: reason,
       }),
@@ -181,12 +185,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   likeButton.addEventListener("click", function () {
     var question = questions[currentQuestionIndex];
     var quoteText = question.quote;
+    var character = question.correctCharacter;
 
     fetch("/api/favorites", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({
-        userId: "currentUser", 
+        character: character,
         quote: quoteText,
       }),
     })
