@@ -20,19 +20,40 @@ export async function initBlacklist() {
 
 export async function addToBlacklist(
   userId: string,
+  character: string,
   quote: string,
   reason: string
 ) {
   await connectToMongo();
-  const result = await blacklistCollection.insertOne({ userId, quote, reason });
+  const result = await blacklistCollection.insertOne({
+    userId,
+    character,
+    quote,
+    reason,
+  });
   return result;
 }
 
 export async function getBlacklistedQuotes(
   userId: string
-): Promise<{ quote: string; reason: string }[]> {
+): Promise<{ quote: string; character: string; reason: string }[]> {
   await connectToMongo();
   const entries = await blacklistCollection.find({ userId }).toArray();
+  return entries.map((entry) => ({
+    quote: entry.quote,
+    character: entry.character,
+    reason: entry.reason,
+  }));
+}
+
+export async function getQuotesByCharacter(
+  userId: string,
+  character: string
+): Promise<{ quote: string; reason: string }[]> {
+  await connectToMongo();
+  const entries = await blacklistCollection
+    .find({ userId, character })
+    .toArray();
   return entries.map((entry) => ({
     quote: entry.quote,
     reason: entry.reason,
