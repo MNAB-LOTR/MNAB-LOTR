@@ -39,7 +39,12 @@
     <main class="mainblack-fav">
       <section class="title-container">
         <h2><strong>Blacklist</strong></h2>
-        <a href="#" class="download-btn" id="download-btn">
+        <a
+          href="/blacklist/download"
+          class="download-btn"
+          id="download-btn"
+          download
+        >
           <img
             src="https://cdn-icons-png.flaticon.com/512/3502/3502477.png"
             alt="Download"
@@ -56,9 +61,22 @@
             <p><strong>Personage:</strong> <%= quote.character %></p>
             <p>
               <strong>Reden:</strong> <%= quote.reason %>
-              <a href="#" class="edit-reason">✎</a>
+              <a
+                href="#"
+                class="edit-reason"
+                data-quote="<%= encodeURIComponent(quote.quote) %>"
+                data-character="<%= encodeURIComponent(quote.character) %>"
+                data-reason="<%= encodeURIComponent(quote.reason) %>"
+                >✎</a
+              >
             </p>
-            <a href="#" class="delete-quote">🗑</a>
+            <a
+              href="#"
+              class="delete-quote"
+              data-quote="<%= encodeURIComponent(quote.quote) %>"
+              data-character="<%= encodeURIComponent(quote.character) %>"
+              >🗑</a
+            >
           </li>
           <% }); %> <% } %>
         </section>
@@ -70,3 +88,97 @@
     </footer>
   </body>
 </html>
+
+<script>
+  document.querySelectorAll(".delete-quote").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const li = btn.closest("li");
+      const encodedQuote = btn.getAttribute("data-quote");
+      const encodedCharacter = btn.getAttribute("data-character");
+
+      const quoteText = decodeURIComponent(encodedQuote);
+      const characterText = decodeURIComponent(encodedCharacter);
+
+      fetch("/blacklist/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quote: quoteText, character: characterText }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Kon quote niet verwijderen");
+          return res;
+        })
+        .then(function () {
+          li.remove();
+        })
+        .catch(function (err) {
+          alert(err.message);
+        });
+    });
+  });
+
+  document.querySelectorAll(".edit-reason").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const li = btn.closest("li");
+
+      const quoteText = decodeURIComponent(btn.getAttribute("data-quote"));
+      const characterText = decodeURIComponent(
+        btn.getAttribute("data-character")
+      );
+      const currentReason = decodeURIComponent(btn.getAttribute("data-reason"));
+
+      const newReason = prompt(
+        "Geef een nieuwe reden voor het blokkeren van deze quote:",
+        currentReason
+      );
+      if (newReason === null || newReason.trim() === "") {
+        alert("Reden mag niet leeg zijn.");
+        return;
+      }
+
+      fetch("/blacklist/update-reason", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          quote: quoteText,
+          character: characterText,
+          reason: newReason.trim(),
+        }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Kon reden niet bijwerken");
+          return res.text();
+        })
+        .then(function (msg) {
+          alert(msg);
+
+          const reasonP = btn.parentElement;
+          reasonP.innerHTML =
+            "<strong>Reden:</strong> " +
+            newReason +
+            ' <a href="#" class="edit-reason" ' +
+            'data-quote="' +
+            encodeURIComponent(quoteText) +
+            '" ' +
+            'data-character="' +
+            encodeURIComponent(characterText) +
+            '" ' +
+            'data-reason="' +
+            encodeURIComponent(newReason) +
+            '"' +
+            ">✎</a>";
+
+          reasonP
+            .querySelector(".edit-reason")
+            .addEventListener("click", arguments.callee);
+        })
+        .catch(function (err) {
+          alert(err.message);
+        });
+    });
+  });
+</script>
