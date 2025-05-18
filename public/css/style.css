@@ -503,6 +503,10 @@ a:hover {
   color: #000;
 }
 
+.edit-reason {
+  color: #000;
+}
+
 /* landing pagina projecten */
 body.page {
   display: flex;
@@ -1011,7 +1015,6 @@ button:disabled {
 .flash-message.success {
   background-color: #2ecc71;
 }
-
 
 /* media queries */
 @media (max-width: 480px) {
