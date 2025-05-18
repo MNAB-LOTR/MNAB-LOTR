@@ -59,3 +59,17 @@ export async function getQuotesByCharacter(
     reason: entry.reason,
   }));
 }
+
+export async function removeFromBlacklist(
+  userId: string,
+  quote: string,
+  character: string
+) {
+  await connectToMongo();
+  const result = await blacklistCollection.deleteOne({
+    userId,
+    quote,
+    character,
+  });
+  return result;
+}

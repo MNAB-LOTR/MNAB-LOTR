@@ -57,7 +57,14 @@
           <li>
             <p>"<%= entry.quote %>"</p>
             <p><strong>Personage:</strong> <%= entry.character %></p>
-            <a href="#" class="delete-quote">🗑</a>
+            <a
+              href="#"
+              class="delete-quote"
+              data-quote="<%- encodeURIComponent(entry.quote) %>"
+              data-character="<%- encodeURIComponent(entry.character) %>"
+            >
+              🗑
+            </a>
           </li>
           <% }); %> <% } %>
         </section>
@@ -69,3 +76,32 @@
     </footer>
   </body>
 </html>
+
+<script>
+  document.querySelectorAll(".delete-quote").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const li = btn.closest("li");
+      const encodedQuote = btn.getAttribute("data-quote");
+      const encodedCharacter = btn.getAttribute("data-character");
+
+      const quoteText = decodeURIComponent(encodedQuote);
+      const characterText = decodeURIComponent(encodedCharacter);
+
+      fetch("/favorites/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quote: quoteText, character: characterText }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Kon quote niet verwijderen");
+          return res;
+        })
+        .then(() => {
+          li.remove();
+        })
+        .catch((err) => alert(err.message));
+    });
+  });
+</script>

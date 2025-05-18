@@ -11,8 +11,14 @@ import {
   addToBlacklist,
   getBlacklistedQuotes,
   getQuotesByCharacter,
+  removeFromBlacklist,
 } from "./blacklist";
-import { initFavorites, addToFavorites, getFavoriteQuotes } from "./favorite";
+import {
+  initFavorites,
+  addToFavorites,
+  getFavoriteQuotes,
+  removeFromFavorites,
+} from "./favorite";
 
 const app = express();
 const port = 3000;
@@ -228,6 +234,37 @@ app.get("/favorites/download", async function (req: Request, res: Response) {
   }
 });
 
+app.delete("/favorites/delete", async function (req: Request, res: Response) {
+  const userId = req.session?.userId;
+
+  if (!userId) {
+    res.status(401).send("Niet toegestaan: log eerst in.");
+    return;
+  }
+
+  const { quote, character } = req.body;
+
+  if (!quote || !character) {
+    res
+      .status(400)
+      .send("Ontbrekende parameters: quote en character zijn vereist.");
+    return;
+  }
+
+  try {
+    const result = await removeFromFavorites(userId, quote, character);
+
+    if (result.deletedCount === 1) {
+      res.status(200).send("Quote succesvol verwijderd.");
+    } else {
+      res.status(404).send("Quote niet gevonden.");
+    }
+  } catch (error) {
+    console.error("Fout bij verwijderen van quote:", error);
+    res.status(500).send("Serverfout bij verwijderen van quote.");
+  }
+});
+
 app.post("/api/favorites", async function (req: Request, res: Response) {
   const userId = req.session.userId;
   const character = req.body.character;
@@ -297,6 +334,37 @@ app.get("/blacklist/download", async function (req: Request, res: Response) {
   } catch (error) {
     console.error("Fout bij het genereren van blacklist bestand:", error);
     res.status(500).send("Serverfout bij het aanmaken van het bestand.");
+  }
+});
+
+app.delete("/blacklist/delete", async function (req: Request, res: Response) {
+  const userId = req.session?.userId;
+
+  if (!userId) {
+    res.status(401).send("Niet toegestaan: log eerst in.");
+    return;
+  }
+
+  const { quote, character } = req.body;
+
+  if (!quote || !character) {
+    res
+      .status(400)
+      .send("Ontbrekende parameters: quote en character zijn vereist.");
+    return;
+  }
+
+  try {
+    const result = await removeFromBlacklist(userId, quote, character);
+
+    if (result.deletedCount === 1) {
+      res.status(200).send("Quote succesvol verwijderd uit blacklist.");
+    } else {
+      res.status(404).send("Quote niet gevonden in blacklist.");
+    }
+  } catch (error) {
+    console.error("Fout bij verwijderen van quote uit blacklist:", error);
+    res.status(500).send("Serverfout bij verwijderen van quote uit blacklist.");
   }
 });
 

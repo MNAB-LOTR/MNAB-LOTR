@@ -49,8 +49,16 @@ export async function getFavoriteQuotes(
   }));
 }
 
-export async function removeFromFavorites(userId: string, quote: string) {
+export async function removeFromFavorites(
+  userId: string,
+  quote: string,
+  character: string
+) {
   await connectToMongo();
-  const result = await favoriteCollection.deleteOne({ userId, quote });
+  const result = await favoriteCollection.deleteOne({
+    userId,
+    quote,
+    character,
+  });
   return result;
 }
