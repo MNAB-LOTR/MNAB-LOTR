@@ -201,6 +201,33 @@ app.get("/favorites", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/favorites/download", async function (req: Request, res: Response) {
+  const userId = req.session.userId;
+
+  if (!userId) {
+    res.status(401).send("Niet toegestaan: log eerst in.");
+    return;
+  }
+
+  try {
+    const favorieten = await getFavoriteQuotes(userId);
+    let tekst = "Personage , Quote:\n";
+
+    favorieten.forEach((item) => {
+      const personage = item.character ? item.character : "";
+      const quote = item.quote ? item.quote : "";
+      tekst += `- ${personage}: "${quote}"\n`;
+    });
+
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Content-Disposition", "attachment; filename=favorieten.txt");
+    res.send(tekst);
+  } catch (error) {
+    console.error("Fout bij het genereren van tekstbestand:", error);
+    res.status(500).send("Serverfout bij het aanmaken van het bestand.");
+  }
+});
+
 app.post("/api/favorites", async function (req: Request, res: Response) {
   const userId = req.session.userId;
   const character = req.body.character;
@@ -241,6 +268,35 @@ app.get("/blacklist", async function (req, res) {
   } catch (error) {
     console.log("Fout bij ophalen van blacklist:", error);
     res.status(500).send("Serverfout");
+  }
+});
+
+app.get("/blacklist/download", async function (req: Request, res: Response) {
+  const userId = req.session.userId;
+
+  if (!userId) {
+    res.status(401).send("Niet toegestaan: log eerst in.");
+    return;
+  }
+
+  try {
+    const blacklistEntries = await getBlacklistedQuotes(userId);
+
+    let tekst = "Personage , Quote , Reden:\n";
+
+    blacklistEntries.forEach((item) => {
+      const personage = item.character ? item.character : "";
+      const quote = item.quote ? item.quote : "";
+      const reden = item.reason ? item.reason : "";
+      tekst += `- ${personage}: "${quote}", Reden: "${reden}"\n`;
+    });
+
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Content-Disposition", "attachment; filename=blacklist.txt");
+    res.send(tekst);
+  } catch (error) {
+    console.error("Fout bij het genereren van blacklist bestand:", error);
+    res.status(500).send("Serverfout bij het aanmaken van het bestand.");
   }
 });
 
