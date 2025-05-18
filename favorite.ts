@@ -18,22 +18,35 @@ export async function initFavorites() {
   await connectToMongo();
 }
 
-export async function addToFavorites(userId: string, quote: string) {
+export async function addToFavorites(
+  userId: string,
+  character: string,
+  quote: string
+) {
   await connectToMongo();
 
-  const exists = await favoriteCollection.findOne({ userId, quote });
+  const exists = await favoriteCollection.findOne({ userId, character, quote });
   if (exists) {
     return { acknowledged: false, message: "Quote already in favorites" };
   }
 
-  const result = await favoriteCollection.insertOne({ userId, quote });
+  const result = await favoriteCollection.insertOne({
+    userId,
+    character,
+    quote,
+  });
   return result;
 }
 
-export async function getFavoriteQuotes(userId: string): Promise<string[]> {
+export async function getFavoriteQuotes(
+  userId: string
+): Promise<{ quote: string; character: string }[]> {
   await connectToMongo();
   const entries = await favoriteCollection.find({ userId }).toArray();
-  return entries.map((entry) => entry.quote);
+  return entries.map((entry) => ({
+    quote: entry.quote,
+    character: entry.character,
+  }));
 }
 
 export async function removeFromFavorites(userId: string, quote: string) {

@@ -53,7 +53,11 @@
           <% } else { %> <% blacklistedQuotes.forEach(function(quote) { %>
           <li>
             <p>"<%= quote.quote %>"</p>
-            <p><strong>Reden:</strong> <%= quote.reason %></p>
+            <p><strong>Personage:</strong> <%= quote.character %></p>
+            <p>
+              <strong>Reden:</strong> <%= quote.reason %>
+              <a href="#" class="edit-reason">✎</a>
+            </p>
             <a href="#" class="delete-quote">🗑</a>
           </li>
           <% }); %> <% } %>

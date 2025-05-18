@@ -46,11 +46,12 @@
       </section>
       <ul>
         <section class="quote-container">
-          <% if (favoriteQuotes.length === 0) { %>
+          <% if (favoriteEntries.length === 0) { %>
           <li>Geen favoriete quotes gevonden.</li>
-          <% } else { %> <% favoriteQuotes.forEach(function(quote) { %>
+          <% } else { %> <% favoriteEntries.forEach(function(entry) { %>
           <li>
-            <p>"<%= quote %>"</p>
+            <p>"<%= entry.quote %>"</p>
+            <p><strong>Personage:</strong> <%= entry.character %></p>
             <a href="#" class="delete-quote">🗑</a>
           </li>
           <% }); %> <% } %>
