@@ -13,9 +13,10 @@
     </header>
 
     <main class="registration-container">
-<% if (message) { %>
-  <div class="message"><%= message.content %></div>
+<% if (error) { %>
+  <p class="error"><%= error %></p>
 <% } %>
+
 
       
       <form action="/register" method="POST">

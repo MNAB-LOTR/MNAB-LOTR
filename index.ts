@@ -95,8 +95,9 @@ app.get("/register", (req, res) => {
 
  return res.render("registration-page", {
   title: "Registratie",
-  error: "Vul alle velden in.",
-  message: null
+  error: null,
+  message: message
+
 });
 
 });
@@ -118,7 +119,6 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req: Request, res: Response) => {
   await handleLogin(req, res);
 });
-
 async function handleRegister(req: Request, res: Response) {
   const { email, password, confirmPassword } = req.body;
 
@@ -150,13 +150,23 @@ async function handleRegister(req: Request, res: Response) {
   } catch (error: any) {
     console.error("Error tijdens registratie:", error.message);
 
+    let errorMsg = "Er ging iets mis bij registratie.";
+    if (
+      error.message.includes("E11000") ||
+      error.message.toLowerCase().includes("bestaat al") ||
+      error.message.toLowerCase().includes("already")
+    ) {
+      errorMsg = "Gebruiker bestaat al.";
+    }
+
     return res.render("registration-page", {
       title: "Registratie",
-      error: "Er ging iets mis bij registratie.",
+      error: errorMsg,
       message: null,
     });
   }
 }
+
 app.get("/debug-blacklist", async (req, res) => {
   const data = await getBlacklistedQuotes(req.session?.userId || "test@example.com");
   res.json(data);

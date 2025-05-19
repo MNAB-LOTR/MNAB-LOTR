@@ -1,44 +1,32 @@
-import { MongoClient } from 'mongodb';
-import bcrypt from 'bcryptjs';
-import { error } from 'console';
+import { MongoClient } from "mongodb";
+import bcrypt from "bcryptjs";
 
 const MONGO_URI = "mongodb+srv://amelie_bontemps:Am3Lo678@clusterlotr.ym74pn1.mongodb.net/";
-const DB_NAME = "MNAB-LOTR"; 
+const DB_NAME = "MNAB-LOTR";
 const COLLECTION_NAME = "users";
 
-interface UserInput {
-  email: string;
-  password: string;
-}
+let usersCollection: any;
 
-const client = new MongoClient(MONGO_URI);
-let db: any;
-
-async function connectDB() {
-  if (!db) {
+async function connect() {
+  if (!usersCollection) {
+    const client = new MongoClient(MONGO_URI);
     await client.connect();
-    db = client.db(DB_NAME);
-    console.log('Verbonden met MongoDB');
+    const db = client.db(DB_NAME);
+    usersCollection = db.collection(COLLECTION_NAME);
+    console.log("✅ Verbonden met MongoDB users-collectie");
   }
-  return db;
 }
 
-export async function createUser({ email, password }: UserInput): Promise<void> {
-  const db = await connectDB();
-  const users = db.collection(COLLECTION_NAME);
+export async function createUser({ email, password }: { email: string; password: string }) {
+  await connect();
 
-  const existingUser = await users.findOne({ email });
-  if (existingUser) {
-    throw new Error("Gebruiker bestaat al."); 
+  const existing = await usersCollection.findOne({ email });
+  if (existing) {
+    throw new Error("Gebruiker bestaat al");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
+  const result = await usersCollection.insertOne({ email, password: hashedPassword });
 
-  await users.insertOne({
-    email,
-    password: hashedPassword,
-    createdAt: new Date(),
-  });
-
-  console.log('Gebruiker succesvol aangemaakt');
+  return result;
 }
