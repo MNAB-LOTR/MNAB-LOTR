@@ -1015,6 +1015,13 @@ button:disabled {
 .flash-message.success {
   background-color: #2ecc71;
 }
+.error {
+  color: black;
+  background: red;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid red;
+}
 
 /* media queries */
 @media (max-width: 480px) {
