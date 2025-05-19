@@ -4,7 +4,7 @@ import { createUser } from "./registration";
 import { loginUser } from "./login";
 import "./session";
 import { check, validationResult } from "express-validator";
-import session = require("express-session");
+import session from "express-session";
 import { flashMiddleware } from "./middelware/flashMiddleware";
 import {
   initBlacklist,
@@ -19,6 +19,7 @@ import {
   getFavoriteQuotes,
   removeFromFavorites,
 } from "./favorite";
+import { updateBlacklistReason } from "./blacklist";
 
 const app = express();
 const port = 3000;
@@ -92,10 +93,12 @@ app.get("/register", (req, res) => {
     delete req.session.message;
   }
 
-  res.render("registration-page", {
-    title: "Registratie",
-    message: message,
-  });
+ return res.render("registration-page", {
+  title: "Registratie",
+  error: "Vul alle velden in.",
+  message: null
+});
+
 });
 
 app.post("/register", (req, res) => {
@@ -123,6 +126,7 @@ async function handleRegister(req: Request, res: Response) {
     return res.render("registration-page", {
       title: "Registratie",
       error: "Vul alle velden in.",
+      message: null,
     });
   }
 
@@ -130,6 +134,7 @@ async function handleRegister(req: Request, res: Response) {
     return res.render("registration-page", {
       title: "Registratie",
       error: "Wachtwoorden komen niet overeen.",
+      message: null,
     });
   }
 
@@ -148,9 +153,14 @@ async function handleRegister(req: Request, res: Response) {
     return res.render("registration-page", {
       title: "Registratie",
       error: "Er ging iets mis bij registratie.",
+      message: null,
     });
   }
 }
+app.get("/debug-blacklist", async (req, res) => {
+  const data = await getBlacklistedQuotes(req.session?.userId || "test@example.com");
+  res.json(data);
+});
 
 async function handleLogin(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -290,7 +300,8 @@ app.post("/api/favorites", async function (req: Request, res: Response) {
 });
 
 app.get("/blacklist", async function (req, res) {
-  const userId = req.session.userId;
+ const userId = req.session.userId as string;
+
 
   if (!userId) {
     return res.redirect("/login");
@@ -408,6 +419,35 @@ app.get("/ten-rounds", (req, res) => {
   res.render("ten-rounds", { title: "Ten Rounds" });
 });
 
+const handleUpdateReason = async (req: any, res: any) => {
+
+  const userId = req.session?.userId as string;
+  const { quote, character, reason } = req.body;
+
+  if (!userId || !quote || !character || !reason) {
+    return res.status(400).send("Verplichte velden ontbreken.");
+  }
+
+  try {
+    const result = await updateBlacklistReason(userId, character, quote, reason);
+    if (result.modifiedCount === 1) {
+      res.send("Reden succesvol bijgewerkt.");
+    } else {
+      res.status(404).send("Item niet gevonden.");
+    }
+  } catch (err) {
+    console.error("❌ Fout bij update:", err);
+    res.status(500).send("Kon reden niet bijwerken.");
+  }
+};
+
+
+
+
+app.put("/update-reason", handleUpdateReason); 
+
 app.listen(port, () => {
-  console.log(`Server gestart op http://localhost:${port}`);
+  console.log(`Server draait op http://localhost:${port}`);
 });
+
+export default app; 
