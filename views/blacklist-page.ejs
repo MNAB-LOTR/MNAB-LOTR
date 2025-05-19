@@ -58,7 +58,7 @@
           <% } else { %> <% blacklistedQuotes.forEach(function(quote) { %>
           <li>
             <p>"<%= quote.quote %>"</p>
-            <p><strong>Personage:</strong> <%= quote.character %></p>
+            <p><strong>Personage:</strong> <a class="link-personage" href="https://lotr.fandom.com/wiki/<%= quote.character %>" target="_blank"><%= quote.character %></a></p>
             <p>
               <strong>Reden:</strong> <%= quote.reason %>
               <a

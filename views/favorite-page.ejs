@@ -56,7 +56,8 @@
           <% } else { %> <% favoriteEntries.forEach(function(entry) { %>
           <li>
             <p>"<%= entry.quote %>"</p>
-            <p><strong>Personage:</strong> <%= entry.character %></p>
+             <p><strong>Personage:</strong> <a class="link-personage" href="https://lotr.fandom.com/wiki/<%= entry.character %>" target="_blank"><%= entry.character %></a></p>
+            <p>
             <a
               href="#"
               class="delete-quote"

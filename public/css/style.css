@@ -1023,6 +1023,13 @@ button:disabled {
   border: 1px solid red;
 }
 
+.link-personage {
+  color: black;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+
 /* media queries */
 @media (max-width: 480px) {
   .map-container {
