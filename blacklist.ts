@@ -73,3 +73,17 @@ export async function removeFromBlacklist(
   });
   return result;
 }
+
+
+export async function updateBlacklistReason(
+  userId: string,
+  character: string,
+  quote: string,
+  newReason: string
+) {
+  await connectToMongo();
+  return await blacklistCollection.updateOne(
+    { userId, character, quote },
+    { $set: { reason: newReason } }
+  );
+}
