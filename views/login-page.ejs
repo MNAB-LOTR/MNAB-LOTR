@@ -13,13 +13,11 @@
     </header>
 
     <main class="login-container">
-
       <% if (message) { %>
       <div class="flash-message <%= message.type %>">
-      <%= message.content %>
+        <%= message.content %>
       </div>
       <% } %>
-
 
       <form class="login-form" action="/login" method="POST">
         <label for="email">Gebruikersnaam<span class="required"></span></label>
@@ -27,11 +25,6 @@
 
         <label for="password">Wachtwoord<span class="required"></span></label>
         <input type="password" id="password" name="password" required />
-
-        <section class="remember-me">
-          <input type="checkbox" id="remember" />
-          <label for="remember">Aangemeld blijven</label>
-        </section>
 
         <button type="submit" class="button-">INLOGGEN</button>
       </form>
