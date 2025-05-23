@@ -99,6 +99,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    likeButton.style.color = "black";
+
     const question = questions[currentQuestionIndex];
     quoteElement.textContent = `"${question.quote}"`;
 
@@ -163,7 +165,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message) {
-          alert("Quote succesvol geblacklist!");
           modal.style.display = "none";
           currentQuestionIndex++;
           loadQuestion();
@@ -183,6 +184,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   likeButton.addEventListener("click", function () {
+    if (likeButton.style.color === "black" || likeButton.style.color === "") {
+      likeButton.style.color = "red";
+    }
+
     var question = questions[currentQuestionIndex];
     var quoteText = question.quote;
     var character = question.correctCharacter;
@@ -207,9 +212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return res.json();
       })
       .then(function (data) {
-        if (data.message) {
-          alert("Quote succesvol toegevoegd aan favorieten!");
-        } else {
+        if (!data.message) {
           alert("Fout bij toevoegen aan favorieten.");
         }
       })
@@ -264,7 +267,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const gameResult = document.querySelector(".game-result");
     const finalScoreElement = document.querySelector(".final-score");
 
-    finalScoreElement.textContent = `Game over! Je eindscore is ${score} van de 20.`;
+    finalScoreElement.innerHTML = `Game over!<br> Je eindscore is ${score} van de 10.`;
 
     gameResult.style.display = "block";
 
