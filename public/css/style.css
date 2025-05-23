@@ -300,7 +300,6 @@ a:hover {
   padding: 40px;
   border-radius: 15px;
   max-width: 400px;
-  height: 500px;
   margin: auto;
 }
 
@@ -332,6 +331,12 @@ a:hover {
 .registration-container input:focus {
   border-color: #d4af37;
   box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
 
 .required {
@@ -1028,7 +1033,6 @@ button:disabled {
   text-decoration: underline;
   font-size: 1rem;
 }
-
 
 /* media queries */
 @media (max-width: 480px) {
