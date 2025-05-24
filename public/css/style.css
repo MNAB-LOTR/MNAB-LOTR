@@ -1042,8 +1042,8 @@ button:disabled {
   text-decoration: underline;
   font-size: 1rem;
 }
-/*highscore pagina*/
 
+/*highscore pagina*/
 .highscore-card {
   padding: 40px;
   max-width: 600px;
@@ -1062,6 +1062,7 @@ button:disabled {
 }
 
 .highscore-entry {
+  font-family: Ringbearer;
   margin-bottom: 20px;
   font-size: 1.9rem;
   color: black;
@@ -1069,6 +1070,10 @@ button:disabled {
 
 .highscore-entry strong {
   color: black;
+}
+
+.highscore-container {
+  margin-top: 55px;
 }
 
 /* media queries */
@@ -1095,6 +1100,10 @@ button:disabled {
 
   .game-selection {
     font-size: 14px;
+  }
+
+  .highscore-container {
+    margin-top: 95px;
   }
 }
 
