@@ -3,16 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title || 'Quiz selectie' %></title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <title><%= title || 'Mijn Highscores' %></title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/logged-in.js"></script>
   </head>
   <body>
     <header class="header-">
-      <h1 class="quiz-name">
-        <a href="/home" class="return-home">The one</a>
-      </h1>
+      <h1 class="quiz-name"><a href="/home" class="return-home">The one</a></h1>
       <aside class="account-overview">
         <a class="account-status" onclick="toggleMenu(event)">☰</a>
         <ul class="account-menu">
@@ -32,37 +30,27 @@
             </ul>
           </li>
           <li><a href="/highscores">Mijn highscores</a></li>
-
           <li><a href="/login">Uitloggen</a></li>
         </ul>
       </aside>
     </header>
+    <main class="mainblack-fav">
+      <div class="highscore-card">
+        <h2>Highscores</h2>
 
-    <main class="mainquiz">
-      <section class="map-marker rounds">
-        <a href="/ten-rounds" class="game-selection"
-          ><span>Ten Rounds</span>
-          <span class="tooltip"
-            >Beantwoord tien vragen. Het spel eindigt na de tiende vraag. Elk
-            juist antwoord levert één halve punt op. Als je beide antwoorden juist hebt, krijg je één punt.</span
-          >
-        </a>
-      </section>
+        <div class="highscore-entry">
+          Ten Rounds:<br />
+          <strong><%= tenRounds %></strong> / 10
+        </div>
 
-      <section class="map-marker sudden-death">
-        <a href="/sudden-death" class="game-selection"
-          ><span>Sudden Death</span>
-          <span class="tooltip"
-            >Speel door totdat je een fout maakt. Het spel eindigt meteen bij
-            een verkeerd antwoord.</span
-          >
-        </a>
-        </section>
-      
-      </section>
+        <div class="highscore-entry">
+          Sudden Death:<br />
+          <strong><%= suddenDeath %></strong> / 10
+        </div>
+      </div>
     </main>
 
-    <footer>
+    <footer class="footer">
       <p>© 2025 MNAB</p>
     </footer>
   </body>

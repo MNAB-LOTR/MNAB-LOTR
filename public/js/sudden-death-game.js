@@ -262,23 +262,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentQuestionIndex++;
     loadQuestion();
   });
+  
+function endGame() {
+  const gameResult = document.querySelector(".game-result");
+  const finalScoreElement = document.querySelector(".final-score");
 
-  function endGame() {
-    const gameResult = document.querySelector(".game-result");
-    const finalScoreElement = document.querySelector(".final-score");
+  fetch("/api/highscore", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      score,
+      mode: window.location.pathname.includes("sudden-death")
+        ? "sudden-death"
+        : "ten-rounds",
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      finalScoreElement.innerHTML = `
+        Game over!<br>
+        Score: <strong>${score}</strong> / 10<br>
+        Highscore: <strong>${data.highscore}</strong> / 10
+      `;
+    })
+    .catch(() => {
+      finalScoreElement.innerHTML = `
+        Game over!<br>
+        Score: <strong>${score}</strong> / 10
+      `;
+    });
 
-    finalScoreElement.innerHTML = `Game over!<br> Je eindscore is ${score} van de 10.`;
+  gameResult.style.display = "block";
+  document.querySelector(".quiz-container").style.display = "none";
+  document.querySelector(".restart-btn").addEventListener("click", () => location.reload());
+}
 
-    gameResult.style.display = "block";
-
-    document.querySelector(".quiz-container").style.display = "none";
-
-    document
-      .querySelector(".restart-btn")
-      .addEventListener("click", function () {
-        location.reload();
-      });
-  }
 
   await fetchData();
 });

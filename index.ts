@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import path from "path";
 import { createUser } from "./routes/registration";
 import { loginUser } from "./routes/login";
@@ -12,6 +12,7 @@ import {
   getBlacklistedQuotes,
   getQuotesByCharacter,
   removeFromBlacklist,
+  updateBlacklistReason,
 } from "./routes/blacklist";
 import {
   initFavorites,
@@ -19,18 +20,21 @@ import {
   getFavoriteQuotes,
   removeFromFavorites,
 } from "./routes/favorite";
-import { updateBlacklistReason } from "./routes/blacklist";
 import loginRouter from "./routes/login";
 import registrationRouter from "./routes/registration";
 import favoriteRouter from "./routes/favorite";
 import blacklistRouter from "./routes/blacklist";
+import { MongoClient } from "mongodb";
 
 const app = express();
 const port = 3000;
 
+const uri = "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
+const dbName = "MNAB-LOTR";
+const client = new MongoClient(uri);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -45,6 +49,7 @@ app.use(
     },
   })
 );
+
 app.use(loginRouter);
 app.use(registrationRouter);
 app.use(favoriteRouter);
@@ -137,15 +142,71 @@ const handleUpdateReason = async (req: any, res: any) => {
       res.status(404).send("Item niet gevonden.");
     }
   } catch (err) {
-    console.error("❌ Fout bij update:", err);
     res.status(500).send("Kon reden niet bijwerken.");
   }
 };
 
 app.put("/update-reason", handleUpdateReason);
 
-app.listen(port, () => {
-  console.log(`Server draait op http://localhost:${port}`);
-});
+const handleHighscore = async (req: any, res: any) => {
+  const userId = req.session?.userId;
+  const { score, mode } = req.body;
+
+  if (!userId || typeof score !== "number" || !["ten-rounds", "sudden-death"].includes(mode)) {
+    return res.status(400).json({ message: "Ongeldige data" });
+  }
+
+  const db = req.app.locals.db;
+  const field = mode === "ten-rounds" ? "highscoreTenRounds" : "highscoreSuddenDeath";
+
+  try {
+    const user = await db.collection("users").findOne({ email: userId });
+    if (!user) return res.status(404).json({ message: "Gebruiker niet gevonden" });
+
+    if (!user[field] || score > user[field]) {
+      await db.collection("users").updateOne(
+        { email: userId },
+        { $set: { [field]: score } }
+      );
+    }
+
+    const updated = await db.collection("users").findOne({ email: userId });
+    res.json({ message: "Highscore opgeslagen", highscore: updated[field] || 0 });
+  } catch (e) {
+    res.status(500).json({ message: "Server-fout" });
+  }
+};
+
+app.post("/api/highscore", handleHighscore);
+
+
+client.connect()
+  .then(() => {
+    const db = client.db(dbName);
+    app.locals.db = db;
+
+    app.get("/highscores", async (req, res) => {
+      const userId = req.session.userId;
+      if (!userId) return res.redirect("/login");
+
+      const user = await db.collection("users").findOne({ email: userId });
+      if (!user) return res.redirect("/login");
+
+  res.render("highscores", {
+  title: "Mijn Highscores",
+  tenRounds: user.highscoreTenRounds || 0,
+  suddenDeath: user.highscoreSuddenDeath || 0,
+
+
+      });
+    });
+
+    app.listen(port, () => {
+      console.log(`Server draait op http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Fout bij verbinden met MongoDB:", err);
+  });
 
 export default app;
