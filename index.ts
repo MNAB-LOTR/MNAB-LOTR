@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import { createUser } from "./registration";
-import { loginUser } from "./login";
+import { createUser } from "./routes/registration";
+import { loginUser } from "./routes/login";
 import "./session";
 import { check, validationResult } from "express-validator";
 import session from "express-session";
@@ -12,14 +12,18 @@ import {
   getBlacklistedQuotes,
   getQuotesByCharacter,
   removeFromBlacklist,
-} from "./blacklist";
+} from "./routes/blacklist";
 import {
   initFavorites,
   addToFavorites,
   getFavoriteQuotes,
   removeFromFavorites,
-} from "./favorite";
-import { updateBlacklistReason } from "./blacklist";
+} from "./routes/favorite";
+import { updateBlacklistReason } from "./routes/blacklist";
+import loginRouter from "./routes/login";
+import registrationRouter from "./routes/registration";
+import favoriteRouter from "./routes/favorite";
+import blacklistRouter from "./routes/blacklist";
 
 const app = express();
 const port = 3000;
@@ -41,6 +45,10 @@ app.use(
     },
   })
 );
+app.use(loginRouter);
+app.use(registrationRouter);
+app.use(favoriteRouter);
+app.use(blacklistRouter);
 
 app.get("/", (req, res) => {
   const games = [
@@ -85,332 +93,11 @@ app.get("/", (req, res) => {
   res.render("index", { title: "Landingspagina", games });
 });
 
-app.get("/register", (req, res) => {
-  var message = null;
-
-  if (req.session && req.session.message) {
-    message = req.session.message;
-    delete req.session.message;
-  }
-
- return res.render("registration-page", {
-  title: "Registratie",
-  error: null,
-  message: message
-
-});
-
-});
-
-app.post("/register", (req, res) => {
-  handleRegister(req, res);
-});
-
-app.get("/login", (req, res) => {
-  const message = req.session?.message || null;
-
-  if (req.session) {
-    delete req.session.message;
-  }
-
-  res.render("login-page", { title: "Login", message: message });
-});
-
-app.post("/login", async (req: Request, res: Response) => {
-  await handleLogin(req, res);
-});
-async function handleRegister(req: Request, res: Response) {
-  const { email, password, confirmPassword } = req.body;
-
-  if (!email || !password || !confirmPassword) {
-    return res.render("registration-page", {
-      title: "Registratie",
-      error: "Vul alle velden in.",
-      message: null,
-    });
-  }
-
-  if (password !== confirmPassword) {
-    return res.render("registration-page", {
-      title: "Registratie",
-      error: "Wachtwoorden komen niet overeen.",
-      message: null,
-    });
-  }
-
-  try {
-    await createUser({ email, password });
-
-    req.session.message = {
-      type: "success",
-      content: "Registratie succesvol. Je kunt nu inloggen.",
-    };
-
-    return res.redirect("/login");
-  } catch (error: any) {
-    console.error("Error tijdens registratie:", error.message);
-
-    let errorMsg = "Er ging iets mis bij registratie.";
-    if (
-      error.message.includes("E11000") ||
-      error.message.toLowerCase().includes("bestaat al") ||
-      error.message.toLowerCase().includes("already")
-    ) {
-      errorMsg = "Gebruiker bestaat al.";
-    }
-
-    return res.render("registration-page", {
-      title: "Registratie",
-      error: errorMsg,
-      message: null,
-    });
-  }
-}
-
 app.get("/debug-blacklist", async (req, res) => {
-  const data = await getBlacklistedQuotes(req.session?.userId || "test@example.com");
+  const data = await getBlacklistedQuotes(
+    req.session?.userId || "test@example.com"
+  );
   res.json(data);
-});
-
-async function handleLogin(req: Request, res: Response) {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    req.session.message = {
-      type: "error",
-      content: "Vul alle velden in.",
-    };
-    return res.redirect("/login");
-  }
-
-  try {
-    const success = await loginUser(email, password);
-    if (success) {
-      req.session.userId = email;
-      return res.redirect("/home");
-    } else {
-      req.session.message = {
-        type: "error",
-        content: "Ongeldige inloggegevens.",
-      };
-      return res.redirect("/login");
-    }
-  } catch (error: any) {
-    req.session.message = {
-      type: "error",
-      content: error.message || "Er ging iets mis bij inloggen.",
-    };
-    return res.redirect("/login");
-  }
-}
-
-app.get("/favorites", async (req: Request, res: Response) => {
-  const userId = req.session.userId;
-
-  if (!userId) {
-    return res.redirect("/login");
-  }
-
-  try {
-    const favoriteEntries = await getFavoriteQuotes(userId);
-    const message =
-      typeof req.query.message === "string" ? req.query.message : null;
-
-    res.render("favorite-page", {
-      title: "Favorites",
-      favoriteEntries: favoriteEntries,
-      message: message,
-    });
-  } catch (error) {
-    console.error("Error fetching favorite quotes:", error);
-    res.status(500).send("Server error");
-  }
-});
-
-app.get("/favorites/download", async function (req: Request, res: Response) {
-  const userId = req.session.userId;
-
-  if (!userId) {
-    res.status(401).send("Niet toegestaan: log eerst in.");
-    return;
-  }
-
-  try {
-    const favorieten = await getFavoriteQuotes(userId);
-    let tekst = "Personage , Quote:\n";
-
-    favorieten.forEach((item) => {
-      const personage = item.character ? item.character : "";
-      const quote = item.quote ? item.quote : "";
-      tekst += `- ${personage}: "${quote}"\n`;
-    });
-
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.setHeader("Content-Disposition", "attachment; filename=favorieten.txt");
-    res.send(tekst);
-  } catch (error) {
-    console.error("Fout bij het genereren van tekstbestand:", error);
-    res.status(500).send("Serverfout bij het aanmaken van het bestand.");
-  }
-});
-
-app.delete("/favorites/delete", async function (req: Request, res: Response) {
-  const userId = req.session?.userId;
-
-  if (!userId) {
-    res.status(401).send("Niet toegestaan: log eerst in.");
-    return;
-  }
-
-  const { quote, character } = req.body;
-
-  if (!quote || !character) {
-    res
-      .status(400)
-      .send("Ontbrekende parameters: quote en character zijn vereist.");
-    return;
-  }
-
-  try {
-    const result = await removeFromFavorites(userId, quote, character);
-
-    if (result.deletedCount === 1) {
-      res.status(200).send("Quote succesvol verwijderd.");
-    } else {
-      res.status(404).send("Quote niet gevonden.");
-    }
-  } catch (error) {
-    console.error("Fout bij verwijderen van quote:", error);
-    res.status(500).send("Serverfout bij verwijderen van quote.");
-  }
-});
-
-app.post("/api/favorites", async function (req: Request, res: Response) {
-  const userId = req.session.userId;
-  const character = req.body.character;
-  const quote = req.body.quote;
-
-  if (!userId || !quote) {
-    res.status(400).json({ error: "Missing userId or quote" });
-    return;
-  }
-
-  try {
-    const result = await addToFavorites(userId, character, quote);
-
-    if ((result as any).acknowledged === false) {
-      res.status(409).json({ message: "Quote already in favorites" });
-    } else {
-      res.json({ message: "Quote added to favorites" });
-    }
-  } catch (error) {
-    console.error("Error adding to favorites:", error);
-    res.status(500).json({ error: "Failed to add to favorites" });
-  }
-});
-
-app.get("/blacklist", async function (req, res) {
- const userId = req.session.userId as string;
-
-
-  if (!userId) {
-    return res.redirect("/login");
-  }
-
-  try {
-    const blacklistedQuotes = await getBlacklistedQuotes(userId);
-    res.render("blacklist-page", {
-      title: "Blacklist",
-      blacklistedQuotes: blacklistedQuotes,
-    });
-  } catch (error) {
-    console.log("Fout bij ophalen van blacklist:", error);
-    res.status(500).send("Serverfout");
-  }
-});
-
-app.get("/blacklist/download", async function (req: Request, res: Response) {
-  const userId = req.session.userId;
-
-  if (!userId) {
-    res.status(401).send("Niet toegestaan: log eerst in.");
-    return;
-  }
-
-  try {
-    const blacklistEntries = await getBlacklistedQuotes(userId);
-
-    let tekst = "Personage , Quote , Reden:\n";
-
-    blacklistEntries.forEach((item) => {
-      const personage = item.character ? item.character : "";
-      const quote = item.quote ? item.quote : "";
-      const reden = item.reason ? item.reason : "";
-      tekst += `- ${personage}: "${quote}", Reden: "${reden}"\n`;
-    });
-
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.setHeader("Content-Disposition", "attachment; filename=blacklist.txt");
-    res.send(tekst);
-  } catch (error) {
-    console.error("Fout bij het genereren van blacklist bestand:", error);
-    res.status(500).send("Serverfout bij het aanmaken van het bestand.");
-  }
-});
-
-app.delete("/blacklist/delete", async function (req: Request, res: Response) {
-  const userId = req.session?.userId;
-
-  if (!userId) {
-    res.status(401).send("Niet toegestaan: log eerst in.");
-    return;
-  }
-
-  const { quote, character } = req.body;
-
-  if (!quote || !character) {
-    res
-      .status(400)
-      .send("Ontbrekende parameters: quote en character zijn vereist.");
-    return;
-  }
-
-  try {
-    const result = await removeFromBlacklist(userId, quote, character);
-
-    if (result.deletedCount === 1) {
-      res.status(200).send("Quote succesvol verwijderd uit blacklist.");
-    } else {
-      res.status(404).send("Quote niet gevonden in blacklist.");
-    }
-  } catch (error) {
-    console.error("Fout bij verwijderen van quote uit blacklist:", error);
-    res.status(500).send("Serverfout bij verwijderen van quote uit blacklist.");
-  }
-});
-
-app.post("/api/blacklist", function (req, res) {
-  const userId = req.session.userId;
-  const { character, quote, reason } = req.body;
-
-  console.log("userId:", userId);
-  console.log("character:", character);
-  console.log("quote:", quote);
-  console.log("reason:", reason);
-
-  if (!userId || !character || !quote || !reason) {
-    res.status(400).json({ error: "Missing required fields." });
-    return;
-  }
-
-  addToBlacklist(userId, character, quote, reason)
-    .then(() => {
-      res.json({ message: "Quote successfully added to blacklist." });
-    })
-    .catch((error) => {
-      console.log("Error adding to blacklist:", error);
-      res.status(500).json({ error: "Failed to add to blacklist." });
-    });
 });
 
 app.get("/home", (req, res) => {
@@ -430,7 +117,6 @@ app.get("/ten-rounds", (req, res) => {
 });
 
 const handleUpdateReason = async (req: any, res: any) => {
-
   const userId = req.session?.userId as string;
   const { quote, character, reason } = req.body;
 
@@ -439,7 +125,12 @@ const handleUpdateReason = async (req: any, res: any) => {
   }
 
   try {
-    const result = await updateBlacklistReason(userId, character, quote, reason);
+    const result = await updateBlacklistReason(
+      userId,
+      character,
+      quote,
+      reason
+    );
     if (result.modifiedCount === 1) {
       res.send("Reden succesvol bijgewerkt.");
     } else {
@@ -451,13 +142,10 @@ const handleUpdateReason = async (req: any, res: any) => {
   }
 };
 
-
-
-
-app.put("/update-reason", handleUpdateReason); 
+app.put("/update-reason", handleUpdateReason);
 
 app.listen(port, () => {
   console.log(`Server draait op http://localhost:${port}`);
 });
 
-export default app; 
+export default app;
