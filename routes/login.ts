@@ -1,11 +1,14 @@
 import express, { Request, Response } from "express";
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+
+dotenv.config(); 
 
 const router = express.Router();
-const MONGO_URI =
-  "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
-const DB_NAME = "MNAB-LOTR";
+
+const MONGO_URI = process.env.MONGODB_URI!;
+const DB_NAME = process.env.MONGODB_DB!;
 const COLLECTION_NAME = "users";
 
 const client = new MongoClient(MONGO_URI);
