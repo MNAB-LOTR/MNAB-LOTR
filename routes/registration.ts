@@ -1,10 +1,13 @@
 import express, { Request, Response } from "express";
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 
-const MONGO_URI =
-  "mongodb+srv://amelie_bontemps:Am3Lo678@clusterlotr.ym74pn1.mongodb.net/";
-const DB_NAME = "MNAB-LOTR";
+dotenv.config(); 
+
+
+const MONGO_URI = process.env.MONGODB_URI!;
+const DB_NAME = process.env.MONGODB_DB!;
 const COLLECTION_NAME = "users";
 
 let usersCollection: any;
