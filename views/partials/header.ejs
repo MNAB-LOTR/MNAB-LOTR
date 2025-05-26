@@ -1,0 +1,27 @@
+<header class="header-">
+  <h1 class="quiz-name">
+    <a href="/home" class="return-home">The one</a>
+  </h1>
+  <aside class="account-overview">
+    <a class="account-status" onclick="toggleMenu(event)">☰</a>
+    <ul class="account-menu">
+      <li><a href="/home">Home</a></li>
+      <li>
+        <a href="#" onclick="toggleSubMenu('quiz-options')">Quiz</a>
+        <ul class="sub-menu quiz-options">
+          <li><a href="/ten-rounds">Ten rounds</a></li>
+          <li><a href="/sudden-death">Sudden death</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleSubMenu('quotes-options')">Quotes</a>
+        <ul class="sub-menu quotes-options">
+          <li><a href="/favorites">Favorites</a></li>
+          <li><a href="/blacklist">Blacklist</a></li>
+        </ul>
+      </li>
+      <li><a href="/highscores">Mijn highscores</a></li>
+      <li><a href="/login">Uitloggen</a></li>
+    </ul>
+  </aside>
+</header>
