@@ -29,7 +29,8 @@ import { MongoClient } from "mongodb";
 const app = express();
 const port = 3000;
 
-const uri = "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
+const uri =
+  "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
 const dbName = "MNAB-LOTR";
 const client = new MongoClient(uri);
 
@@ -40,7 +41,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
-    secret: "your-secret-key",
+    secret: "MNAB-LOTR-2025",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -152,26 +153,34 @@ const handleHighscore = async (req: any, res: any) => {
   const userId = req.session?.userId;
   const { score, mode } = req.body;
 
-  if (!userId || typeof score !== "number" || !["ten-rounds", "sudden-death"].includes(mode)) {
+  if (
+    !userId ||
+    typeof score !== "number" ||
+    !["ten-rounds", "sudden-death"].includes(mode)
+  ) {
     return res.status(400).json({ message: "Ongeldige data" });
   }
 
   const db = req.app.locals.db;
-  const field = mode === "ten-rounds" ? "highscoreTenRounds" : "highscoreSuddenDeath";
+  const field =
+    mode === "ten-rounds" ? "highscoreTenRounds" : "highscoreSuddenDeath";
 
   try {
     const user = await db.collection("users").findOne({ email: userId });
-    if (!user) return res.status(404).json({ message: "Gebruiker niet gevonden" });
+    if (!user)
+      return res.status(404).json({ message: "Gebruiker niet gevonden" });
 
     if (!user[field] || score > user[field]) {
-      await db.collection("users").updateOne(
-        { email: userId },
-        { $set: { [field]: score } }
-      );
+      await db
+        .collection("users")
+        .updateOne({ email: userId }, { $set: { [field]: score } });
     }
 
     const updated = await db.collection("users").findOne({ email: userId });
-    res.json({ message: "Highscore opgeslagen", highscore: updated[field] || 0 });
+    res.json({
+      message: "Highscore opgeslagen",
+      highscore: updated[field] || 0,
+    });
   } catch (e) {
     res.status(500).json({ message: "Server-fout" });
   }
@@ -179,8 +188,8 @@ const handleHighscore = async (req: any, res: any) => {
 
 app.post("/api/highscore", handleHighscore);
 
-
-client.connect()
+client
+  .connect()
   .then(() => {
     const db = client.db(dbName);
     app.locals.db = db;
@@ -192,12 +201,10 @@ client.connect()
       const user = await db.collection("users").findOne({ email: userId });
       if (!user) return res.redirect("/login");
 
-  res.render("highscores", {
-  title: "Mijn Highscores",
-  tenRounds: user.highscoreTenRounds || 0,
-  suddenDeath: user.highscoreSuddenDeath || 0,
-
-
+      res.render("highscores", {
+        title: "Mijn Highscores",
+        tenRounds: user.highscoreTenRounds || 0,
+        suddenDeath: user.highscoreSuddenDeath || 0,
       });
     });
 
