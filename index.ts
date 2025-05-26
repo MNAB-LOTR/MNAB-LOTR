@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import dotenv from "dotenv";
 import { createUser } from "./routes/registration";
 import { loginUser } from "./routes/login";
 import "./session";
@@ -26,12 +27,13 @@ import favoriteRouter from "./routes/favorite";
 import blacklistRouter from "./routes/blacklist";
 import { MongoClient } from "mongodb";
 
-const app = express();
-const port = 3000;
+dotenv.config();
 
-const uri =
-  "mongodb+srv://mayasliman:vywdaq-pytJiz-6wecri@clusterlotr.ym74pn1.mongodb.net/";
-const dbName = "MNAB-LOTR";
+const app = express();
+const port = process.env.PORT || 3000;
+
+const uri = process.env.MONGODB_URI!;
+const dbName = process.env.MONGODB_DB!;
 const client = new MongoClient(uri);
 
 app.use(express.json());
@@ -41,7 +43,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
-    secret: "MNAB-LOTR-2025",
+    secret: process.env.SESSION_SECRET || "fallbackSecret",
     resave: false,
     saveUninitialized: false,
     cookie: {
