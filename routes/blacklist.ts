@@ -1,11 +1,13 @@
 import express, { Request, Response } from "express";
 import { MongoClient, Collection } from "mongodb";
+import dotenv from "dotenv";
 
-const uri =
-  "mongodb+srv://nailadhaim:eah6oI9VDuvliRhh@clusterlotr.ym74pn1.mongodb.net/";
+dotenv.config(); 
+
+const uri = process.env.MONGODB_URI!;
 const client = new MongoClient(uri);
 let blacklistCollection: Collection;
-const DB_NAME = "MNAB-LOTR";
+const DB_NAME = process.env.MONGODB_DB!;
 const router = express.Router();
 
 async function connectToMongo() {
