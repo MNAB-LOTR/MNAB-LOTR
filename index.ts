@@ -209,6 +209,12 @@ client
         suddenDeath: user.highscoreSuddenDeath || 0,
       });
     });
+    
+ app.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/login");
+  });
+});
 
     app.listen(port, () => {
       console.log(`Server draait op http://localhost:${port}`);
