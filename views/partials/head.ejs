@@ -1,0 +1,13 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || 'My App' %></title>
+
+  <% if (stylesheets && stylesheets.length) { %> <%
+  stylesheets.forEach(function(sheet) { %>
+  <link rel="stylesheet" href="<%= sheet %>" />
+  <% }); %> <% } %> <% if (scripts && scripts.length) { %> <%
+  scripts.forEach(function(script) { %>
+  <script src="<%= script %>"></script>
+  <% }); %> <% } %>
+</head>
