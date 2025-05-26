@@ -1,2 +1,2 @@
 # MNAB-LOTR
-https://mnab-lotr.onrender.com
+De applicatie is gehost op Render en hier is de link te bezoeken: https://mnab-lotr.onrender.com
