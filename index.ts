@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Express, Request, Response } from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { createUser } from "./routes/registration";
@@ -126,7 +126,7 @@ app.get("/ten-rounds", (req, res) => {
   res.render("ten-rounds", { title: "Ten Rounds" });
 });
 
-const handleUpdateReason = async (req: any, res: any) => {
+const handleUpdateReason = async (req: Request, res: Response) => {
   const userId = req.session?.userId as string;
   const { quote, character, reason } = req.body;
 
@@ -151,9 +151,11 @@ const handleUpdateReason = async (req: any, res: any) => {
   }
 };
 
-app.put("/update-reason", handleUpdateReason);
+app.put("/update-reason", (req, res) => {
+  handleUpdateReason(req, res);
+});
 
-const handleHighscore = async (req: any, res: any) => {
+const handleHighscore = async (req: Request, res: Response) => {
   const userId = req.session?.userId;
   const { score, mode } = req.body;
 
@@ -190,7 +192,9 @@ const handleHighscore = async (req: any, res: any) => {
   }
 };
 
-app.post("/api/highscore", handleHighscore);
+app.post("/api/highscore", (req, res) => {
+  handleHighscore(req, res);
+});
 
 client
   .connect()
