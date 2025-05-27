@@ -53,6 +53,7 @@ app.use(
   })
 );
 
+app.use(protectRoutes);
 app.use(loginRouter);
 app.use(registrationRouter);
 app.use(favoriteRouter);
