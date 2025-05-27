@@ -7,6 +7,7 @@ import "./session";
 import { check, validationResult } from "express-validator";
 import session from "express-session";
 import { flashMiddleware } from "./middelware/flashMiddleware";
+import { protectRoutes } from "./middelware/authMiddleware";
 import {
   initBlacklist,
   addToBlacklist,
